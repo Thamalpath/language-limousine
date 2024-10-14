@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;1,400;1,700&family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("../images/Background.svg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wrapper {
+  width: 520px;
+  background: rgba(255, 255, 255, 0.2);
+  border: solid 2px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 40px;
+  color: #ffffff;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+  color: #ffffff;
+}
+.wrapper .input-box {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  margin: 30px 0;
+}
+.input-box input,
+.input-box select {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: solid 2px rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+  padding: 0 45px 0 20px;
+}
+.input-box select {
+  appearance: none;
+  padding-right: 45px;
+  color: #000;
+  font-weight: 500;
+}
+.input-box select option {
+  color: #000;
+  font-weight: 500;
+}
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #353635;
+  pointer-events: none;
+}
+.input-box input::placeholder {
+  color: #353635;
+  font-weight: 500;
+}
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+}
+.remember-forgot input label {
+  color: #fff;
+  margin: 3px;
+}
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+}
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(30deg, #0e2a47, #3085e0);
+  border-radius: 20px;
+  background-size: 100% auto;
+  font-family: inherit;
+  font-size: 17px;
+  padding: 0.6em 1.5em;
+}
+
+button:hover {
+  background-position: right center;
+  background-size: 200% auto;
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse512 1.5s infinite;
+}
+
+@keyframes pulse512 {
+  0% {
+    box-shadow: 0 0 0 0 #05bada66;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+  }
+}
+
+.wrapper .register-link {
+  font-size: 15apx;
+  text-align: center;
+  padding: 20px 0 15px;
+}
+.register-link p a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+.register-link p a:hover {
+  text-decoration: underline;
+  color: #c7c9c7;
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+    padding: 20px;
+  }
+  .input-box {
+    margin: 20px 0;
+  }
+  .input-box select option {
+    font-size: 14px;
+  }
+  button {
+    font-size: 15px;
+  }
+}
