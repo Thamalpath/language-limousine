@@ -16,48 +16,66 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || !in_array($_SES
     exit();
 }
 
+// Retrieve school data from the school table
+$schools = [];
+try {
+    $stmt_schools = $pdo->query("SELECT sch_id, username, schoolID FROM school");
+    while ($row = $stmt_schools->fetch(PDO::FETCH_ASSOC)) {
+        $schools[] = $row;
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+
 $successNames = [];  // To store successfully added student names
-$failedNames = [];   // To store failed student names
+$failedNames = [];
 
 // If the 'Save' button is clicked, insert the data into the database
 if (isset($_POST['save'])) {
     $selectedDate = $_POST['date'];  // Retrieve the selected date
-    $sheetData = $_POST['data'];     // Retrieve the data from hidden inputs
+    $sheetData = $_POST['data'];
+    $schoolID = $_POST['schoolID'] ?? '';     
 
     // Prepare the SQL insert query with placeholders
-    $stmt = $pdo->prepare("INSERT INTO students (date, arr_time_dep_pu_time, flight_no, student_number, student_given_name, student_family_name, 
-                                              host_given_name, host_family_name, client, waiting_for_student_at_airport, 
-                                              student_in_car_to_host, student_delivered_to_homestay_home)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO students (Date, Trip, actual_arrival_time, arr_time_dep_pu_time, Flight, DI, M_or_F, student_number, student_given_name, student_family_name, 
+                                                host_given_name, host_family_name, Phone, Address, City, Special_instructions, Study_Permit, School, staff_member_assigned, client)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     // Bind and insert data row by row
     foreach ($sheetData as $index => $row) {
         // Skip the first row (headers)
-        if ($index == 1) continue;
+        if ($index == 0) continue;
 
         // Assign each row's values
-        $arrTimeDepPU = $row['A'];
-        $flightNo = $row['B'];
-        $studentNumber = $row['C'];
-        $studentGivenName = $row['D'];
-        $studentFamilyName = $row['E'];
-        $hostGivenName = $row['F'];
-        $hostFamilyName = $row['G'];
-        $client = $row['H'];
-        $waitingAtAirport = $row['I'];
-        $inCarToHost = $row['J'];
-        $deliveredToHomestay = $row['K'];
+        $tripNumber = $row['A'] ?? '';
+        $actualArrivalTime = !empty($row['B']) ? date('H:i:s', strtotime($row['B'])) : '';
+        $arrTimeDepPuTime = !empty($row['C']) ? date('H:i:s', strtotime($row['C'])) : '';
+        $flightNumber = $row['D'] ?? '';
+        $dI = $row['E'] ?? '';
+        $mOrF = $row['F'] ?? '';
+        $studentNumber = $row['G'] ?? '';
+        $studentGivenName = $row['H'] ?? '';
+        $studentFamilyName = $row['I'] ?? '';
+        $hostGivenName = $row['J'] ?? '';
+        $hostFamilyName = $row['K'] ?? '';
+        $phone = $row['L'] ?? '';
+        $address = $row['M'] ?? '';
+        $city = $row['N'] ?? '';
+        $specialInstructions = $row['O'] ?? '';
+        $studyPermit = $row['P'] ?? '';
+        $school = $row['Q'] ?? '';
+        $staffMemberAssigned = $row['R'] ?? '';
 
         // Execute the query with the current row's data
-        if ($stmt->execute([$selectedDate, $arrTimeDepPU, $flightNo, $studentNumber, $studentGivenName, $studentFamilyName, 
-                             $hostGivenName, $hostFamilyName, $client, $waitingAtAirport, $inCarToHost, $deliveredToHomestay])) {
-            $successNames[] = $studentGivenName;  // Add to success list
+        if ($stmt->execute([$selectedDate, $tripNumber, $actualArrivalTime, $arrTimeDepPuTime, $flightNumber, $dI, $mOrF, $studentNumber, $studentGivenName, $studentFamilyName, 
+                $hostGivenName, $hostFamilyName, $phone, $address, $city, $specialInstructions, $studyPermit, $school, $staffMemberAssigned, $schoolID])) {
+            $successNames[] = $studentGivenName;
         } else {
-            $failedNames[] = $studentGivenName;   // Add to failed list
+            $failedNames[] = $studentGivenName;
         }
     }
 }
-
 ?>
 
 <?php include 'partials/header.php';?>
@@ -97,21 +115,37 @@ if (isset($_POST['save'])) {
 												<div class="card-body p-5">
                                                     
                                                     <form method="POST" class="row g-3 needs-validation" enctype="multipart/form-data">
+                                                        <input type="hidden" name="selected_school_id" id="selected_school_id">
+
                                                         <div class="card-title d-flex align-items-center">
-                                                            <h5 id="heading" class="mb-0 text-primary font-24 fw-bold">Select Date and Upload Excel File</h5>
+                                                            <h5 id="heading" class="mb-0 text-primary font-24 fw-bold">Upload Student Data</h5>
                                                         </div>
                                                         <hr>
                                                         
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label for="date" class="form-label">Select Date</label>
                                                             <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                                                             <div class="invalid-feedback">
                                                                 Please select a date.
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 mb-4">
+                                                        <div class="col-md-4">
+                                                            <label for="schoolID" class="form-label">School Name</label>
+                                                            <select class="form-select" name="schoolID" id="schoolID" required>
+                                                                <option value="">Select School</option>
+                                                                <?php foreach ($schools as $school): ?>
+                                                                    <option value="<?php echo htmlspecialchars($school['schoolID']); ?>" >
+                                                                        <?php echo htmlspecialchars($school['schoolID']); ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Please select a school.
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 mb-4">
                                                             <label for="date" class="form-label">Choose Excel File:</label>
-                                                            <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xlsx" >
+                                                            <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xlsx, .xls">
                                                             <div class="invalid-feedback">
                                                                 Please choose a excel file.
                                                             </div>
@@ -172,6 +206,9 @@ if (isset($_POST['save'])) {
 
                                                     // Display the data in a table format with hidden inputs
                                                     echo "<form method='post' action=''>";
+                                                    echo "<input type='hidden' name='date' value='" . htmlspecialchars($selectedDate, ENT_QUOTES) . "'>";
+                                                    echo "<input type='hidden' name='schoolID' value='" . htmlspecialchars($_POST['selected_school_id'], ENT_QUOTES) . "'>";
+                                                    
                                                     echo "<input type='hidden' name='date' value='" . htmlspecialchars($selectedDate, ENT_QUOTES) . "'>";  // Pass the selected date to the next form
                                                     echo "<div class='col-md-12 text-center g-3 mt-5'>
                                                             <div class='d-flex justify-content-start mb-4 gap-3 flex-wrap'>
@@ -181,17 +218,24 @@ if (isset($_POST['save'])) {
                                                     echo "<table id='example' class='table table-striped table-bordered' style='width:100%'>";
                                                     echo "<thead>";
                                                     echo "<tr>
+                                                            <th>Trip</th>
+                                                            <th>Actual Arrival Time</th>            
                                                             <th>Arr Time Dep PU Time</th>
-                                                            <th>Flight #</th>
+                                                            <th>Flight</th>
+                                                            <th>D/I</th>
+                                                            <th>M or F</th>
                                                             <th>Student Number</th>
                                                             <th>Student Given Name</th>
                                                             <th>Student Family Name</th>
                                                             <th>Host Given Name</th>
                                                             <th>Host Family Name</th>
-                                                            <th>Client</th>
-                                                            <th>Waiting For Student At Airport</th>
-                                                            <th>Student In A Car To Host Family Home</th>
-                                                            <th>Student Delivered To Homestay Home</th>
+                                                            <th>Phone</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>Special Instructions</th>
+                                                            <th>Study Permit</th>
+                                                            <th>School</th>
+                                                            <th>Staff Member Assigned</th>
                                                         </tr>";
                                                     echo "</thead>";
 
@@ -234,3 +278,8 @@ if (isset($_POST['save'])) {
 
 	<?php include 'partials/footer.php';?>
     
+    <script>
+        document.getElementById('schoolID').addEventListener('change', function() {
+            document.getElementById('selected_school_id').value = this.value;
+        });
+    </script>
