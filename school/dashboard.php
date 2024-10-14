@@ -66,7 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $city = $sheet->getCell("N{$row}")->getValue();
       $specialInstructions = $sheet->getCell("O{$row}")->getValue();
       $studyPermit = $sheet->getCell("P{$row}")->getValue();
-      $staffMemberAssigned = $sheet->getCell("Q{$row}")->getValue();
+      $school = $sheet->getCell("Q{$row}")->getValue();
+      $staffMemberAssigned = $sheet->getCell("R{$row}")->getValue();
 
       // Check if the student record exists
       $checkStmt->execute([$studentNumber, $selectedDate]);
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $tripNumber, $actualArrivalTime, $arrTimeDepPuTime, $flightNumber,
           $dI, $mOrF, $studentGivenName, $studentFamilyName, $hostGivenName, 
           $hostFamilyName, $phone, $address, $city, $specialInstructions, 
-          $studyPermit, $schoolId, $staffMemberAssigned, $schoolId, $studentNumber, $selectedDate
+          $studyPermit, $school, $staffMemberAssigned, $schoolId, $studentNumber, $selectedDate
         ]);
       } else {
         // Insert new record
@@ -86,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $selectedDate, $tripNumber, $actualArrivalTime, $arrTimeDepPuTime, 
           $flightNumber, $dI, $mOrF, $studentNumber, $studentGivenName, 
           $studentFamilyName, $hostGivenName, $hostFamilyName, $phone, 
-          $address, $city, $specialInstructions, $studyPermit, $schoolId, 
+          $address, $city, $specialInstructions, $studyPermit, $school, 
           $staffMemberAssigned, $schoolId
         ]);
       }
