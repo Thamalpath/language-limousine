@@ -132,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="col-md-6">
                           <label for="selected_date" class="form-label fw-bold fs-6">Select the Date</label>
                           <input type="date" class="form-control" name="selected_date" id="selected_date" value="<?php echo date('Y-m-d'); ?>" required>
+                          <input type="date" class="form-control" name="selected_date" id="selected_date" value="<?php echo date('Y-m-d'); ?>" required>
                         </div>
                         <div class="col-md-6 mb-4">
                           <label for="excel_file" class="form-label fw-bold fs-6">Choose Excel File:</label>
