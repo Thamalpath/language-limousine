@@ -33,6 +33,8 @@
 						</li>
 						<li> <a href="school"><i class="bx bx-right-arrow-alt"></i>School</a>
 						</li>
+						<li> <a href="sub-driver"><i class="bx bx-right-arrow-alt"></i>Sub Drivers</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
