@@ -20,35 +20,56 @@ $assignmentStatus = '';
 // Handle form submission for assigning drivers
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['assign'])) {
+
         $assignmentStatus = assignDrivers($pdo);
     }
 }
 
-// Function to handle driver assignment
 function assignDrivers($pdo) {
-    $driver_id = filter_var($_POST['driverId'], FILTER_VALIDATE_INT);
-    $selected_ids = array_map('intval', $_POST['selected_row'] ?? []);
+
+    $driver_id = isset($_POST['driverId']) ? $_POST['driverId'] : null;
+
+    if (!$driver_id) {
+        error_log('Driver ID is invalid or not set.');
+        return 'failure';
+    }
+
+    $selected_ids = $_POST['selected_row'] ?? [];
+
+    error_log('Driver ID: ' . $driver_id);
+    error_log('Selected IDs: ' . implode(', ', $selected_ids));
 
     if (!empty($selected_ids) && !empty($driver_id)) {
-        $ids_placeholder = implode(',', array_fill(0, count($selected_ids), '?'));
-        $update_query = "UPDATE students SET driverId = ? WHERE ID IN ($ids_placeholder)";
 
+        $ids_placeholder = implode(',', array_fill(0, count($selected_ids), '?'));
+
+        $update_query = "UPDATE students SET driverId = ? WHERE ID IN ($ids_placeholder)";
+        
         try {
+
             $stmt = $pdo->prepare($update_query);
+
             $params = array_merge([$driver_id], $selected_ids);
+
             if ($stmt->execute($params)) {
-                header("Location: " . $_SERVER['PHP_SELF']); // Redirect to avoid resubmission
+                return 'success';
+                header("Location: " . $_SERVER['PHP_SELF']);
                 exit();
             } else {
+                error_log('Failed to execute the driver assignment query.');
                 return 'failure';
             }
         } catch (PDOException $e) {
-            error_log($e->getMessage());
+            error_log('PDOException: ' . $e->getMessage());
             return 'failure';
         }
+    } else {
+
+        error_log('Empty selected IDs or invalid driver ID.');
     }
     return 'failure';
 }
+
 
 // Function to fetch driver options
 function fetchDrivers($pdo) {
@@ -57,6 +78,10 @@ function fetchDrivers($pdo) {
     $driver_stmt->execute();
     $drivers = $driver_stmt->fetchAll(PDO::FETCH_ASSOC);
     
+    if (empty($drivers)) {
+        return '<option value="">No available drivers</option>';
+    }
+
     $options = '';
     foreach ($drivers as $driver) {
         $options .= "<option value='{$driver['driverId']}'>{$driver['driverId']}</option>";
@@ -147,13 +172,7 @@ function displayStudents($pdo) {
                                                     <label for="assign" class="form-label">&nbsp;</label>
                                                     <button type="submit" name="assign" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Assign</button>
                                                 </div>
-                                            </form> 
-                                        </div>
-                                    </div>
-
-                                    <div class="card mt-3">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
+                                                <div class="table-responsive">
                                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                                     <thead>
                                                         <tr>
@@ -176,7 +195,7 @@ function displayStudents($pdo) {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </form> 
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +204,8 @@ function displayStudents($pdo) {
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
 <?php include 'partials/footer.php'; ?>
 

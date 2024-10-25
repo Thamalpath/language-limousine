@@ -15,9 +15,16 @@
         <ul class="metismenu" id="sidenav">
           <li>
             <a href="dashboard">
-              <div class="parent-icon"><i class="material-icons-outlined">home</i>
+              <div class="parent-icon"><i class="material-icons-outlined">airport_shuttle</i>
               </div>
-              <div class="menu-title">Dashboard</div>
+              <div class="menu-title">Assign Drivers</div>
+            </a>
+          </li>
+          <li>
+            <a href="time">
+              <div class="parent-icon"><i class="material-icons-outlined">schedule</i>
+              </div>
+              <div class="menu-title">Add Time</div>
             </a>
           </li>  
         </ul>
