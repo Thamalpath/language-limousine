@@ -26,15 +26,14 @@ if (isset($_POST['update_in_car'])) {
     $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        $_SESSION['success_message'] = "In-car time updated for student ID: $student_id.";
+        echo "<script>
+            $('#example').DataTable().ajax.reload(null, false);
+        </script>";
     } else {
-        $_SESSION['error_message'] = "Failed to update in-car time for student ID: $student_id.";
+        $_SESSION['error'] = "Failed to update in-car time for student ID: $student_id.";
     }
-
-    // Redirect to avoid form resubmission
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
 }
+
 
 if (isset($_POST['deliver'])) {
     $student_id = $_POST['student_id'];
@@ -47,9 +46,11 @@ if (isset($_POST['deliver'])) {
     $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        $_SESSION['success_message'] = "In-car time updated for student ID: $student_id.";
+        echo "<script>
+            $('#example').DataTable().ajax.reload(null, false);
+        </script>";
     } else {
-        $_SESSION['error_message'] = "Failed to update in-car time for student ID: $student_id.";
+        $_SESSION['error'] = "Failed to update in-car time for student ID: $student_id.";
     }
 
     // Redirect to avoid form resubmission
@@ -164,7 +165,7 @@ function displayStudents($pdo) {
                                             <div class="card-body p-4">
                                                 <form method="POST" class="row g-3">
                                                     <div class="col-md-3">
-                                                        <label for="date" class="form-label fw-bold fs-6">Select the Date</label>
+                                                        <label for="date" class="form-label fw-bold fs-6">Select Date</label>
                                                         <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                                                     </div>
                                                     <div class="col-md-3">
