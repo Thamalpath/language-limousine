@@ -89,27 +89,6 @@ function fetchDrivers($pdo) {
     return $options;
 }
 
-// Function to fetch sub-driver options
-function fetchSubDrivers($pdo) {
-    // Updated query to fetch from sub-drivers table
-    $driver_query = "SELECT subdri_id, username, driverId, vehicle_no FROM `sub-drivers` WHERE status != 'offduty'";
-    $driver_stmt = $pdo->prepare($driver_query);
-    $driver_stmt->execute();
-    $subDrivers = $driver_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (empty($subDrivers)) {
-        return '<option value="">No available sub-drivers</option>';
-    }
-
-    // Generate options for each sub-driver
-    $options = '';
-    foreach ($subDrivers as $subDriver) {
-        $options .= "<option value='{$subDriver['driverId']}'>{$subDriver['driverId']}</option>";
-    }
-    return $options;
-}
-
-
 // Function to display students based on selected date
 function displayStudents($pdo) {
     if (isset($_POST['search'])) {
@@ -173,64 +152,50 @@ function displayStudents($pdo) {
                                     <div class="card">
                                         <div class="card-body p-4">
                                             <form method="POST" class="row g-3">
-                                                <div class="col-md-2">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select Date</label>
+                                                <div class="col-md-3">
+                                                    <label for="date" class="form-label fw-bold fs-6">Select the Date</label>
                                                     <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="addItem" class="form-label">&nbsp;</label>
                                                     <button type="submit" name="search" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Search</button>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="date" class="form-label fw-bold fs-6">Select Driver</label>
                                                     <select class="form-select" name="driverId" id="driverId" required>
                                                         <option value="">-- Select Driver --</option>
                                                         <?php echo fetchDrivers($pdo); ?>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2 mb-4">
+                                                <div class="col-md-3 mb-4">
                                                     <label for="assign" class="form-label">&nbsp;</label>
                                                     <button type="submit" name="assign" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Assign</button>
                                                 </div>
-
-                                                <div class="col-md-2">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select Sub-Driver</label>
-                                                    <select class="form-select" name="driverId" id="driverId">
-                                                        <option value="">-- Select Sub-Driver --</option>
-                                                        <?php echo fetchSubDrivers($pdo); ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 mb-4">
-                                                    <label for="assign" class="form-label">&nbsp;</label>
-                                                    <button type="submit" name="assign" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Assign</button>
-                                                </div>
-                                                
                                                 <div class="table-responsive">
-                                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Pick</th>
-                                                                <th>ID</th>
-                                                                <th>Arrival Time</th>
-                                                                <th>Flight</th>
-                                                                <th>D or I</th>
-                                                                <th>Student Number</th>
-                                                                <th>Student Given Name</th>
-                                                                <th>Host Given Name</th>
-                                                                <th>Phone Numbers</th>
-                                                                <th>Address</th>
-                                                                <th>City</th>
-                                                                <th>School</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php echo displayStudents($pdo); ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </form> 
-                                        </div>
+                                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pick</th>
+                                                            <th>ID</th>
+                                                            <th>Arrival Time</th>
+                                                            <th>Flight</th>
+                                                            <th>D or I</th>
+                                                            <th>Student Number</th>
+                                                            <th>Student Given Name</th>
+                                                            <th>Host Given Name</th>
+                                                            <th>Phone Numbers</th>
+                                                            <th>Address</th>
+                                                            <th>City</th>
+                                                            <th>School</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php echo displayStudents($pdo); ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form> 
                                     </div>
                                 </div>
                             </div>
