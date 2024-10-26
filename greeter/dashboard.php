@@ -89,6 +89,23 @@ function fetchDrivers($pdo) {
     return $options;
 }
 
+function fetchsubDrivers($pdo) {
+    $driver_query = "SELECT driverId FROM `sub-drivers` WHERE status != 'offduty'";
+    $driver_stmt = $pdo->prepare($driver_query);
+    $driver_stmt->execute();
+    $drivers = $driver_stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (empty($drivers)) {
+        return '<option value="">No available drivers</option>';
+    }
+
+    $options = '';
+    foreach ($drivers as $driver) {
+        $options .= "<option value='{$driver['driverId']}'>{$driver['driverId']}</option>";
+    }
+    return $options;
+}
+
 // Function to display students based on selected date
 function displayStudents($pdo) {
     if (isset($_POST['search'])) {
@@ -163,9 +180,16 @@ function displayStudents($pdo) {
 
                                                 <div class="col-md-3">
                                                     <label for="date" class="form-label fw-bold fs-6">Select Driver</label>
-                                                    <select class="form-select" name="driverId" id="driverId" required>
+                                                    <select class="form-select" name="driverId" id="driverId" >
                                                         <option value="">-- Select Driver --</option>
                                                         <?php echo fetchDrivers($pdo); ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="date" class="form-label fw-bold fs-6">Select sub Driver</label>
+                                                    <select class="form-select" name="driverId" id="driverId" >
+                                                        <option value="">-- Select Driver --</option>
+                                                        <?php echo fetchsubDrivers($pdo); ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-3 mb-4">
