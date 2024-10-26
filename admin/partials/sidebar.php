@@ -44,6 +44,13 @@
 						<div class="menu-title">Print</div>
 					</a>
 				</li>
+				<li>
+					<a href="Map">
+						<div class="parent-icon"><i class='bx bx-printer'></i>
+						</div>
+						<div class="menu-title">Map</div>
+					</a>
+				</li>
 			</ul>
 
 			<!--end navigation-->
