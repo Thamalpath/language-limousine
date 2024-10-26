@@ -119,7 +119,7 @@ function displayStudents($pdo) {
             }
             return $rows;
         } else {
-            return "<tr><td colspan='12'>No records found for the selected date.Check the date</td></tr>";
+            return "<tr><td colspan='12'>No records found for the selected date</td></tr>";
         }
     }
     return '';
