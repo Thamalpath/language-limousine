@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['user_id'] = $user['driver_id'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['username'] = $user['username'];
+    $_SESSION['driverId'] = $user['driverId'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['success'] = "Success: Sign in successful!";
     $_SESSION['signed_in'] = true;
