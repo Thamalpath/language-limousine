@@ -29,13 +29,18 @@
 						</li>
 						<li> <a href="driver"><i class="bx bx-right-arrow-alt"></i>Drivers</a>
 						</li>
-						<li> <a href="student"><i class="bx bx-right-arrow-alt"></i>Students</a>
-						</li>
 						<li> <a href="school"><i class="bx bx-right-arrow-alt"></i>School</a>
 						</li>
 						<li> <a href="sub-driver"><i class="bx bx-right-arrow-alt"></i>Sub Drivers</a>
 						</li>
 					</ul>
+				</li>
+				<li>
+					<a href="student">
+						<div class="parent-icon"><i class='bx bxs-graduation'></i>
+						</div>
+						<div class="menu-title">Students</div>
+					</a>
 				</li>
 				<li>
 					<a href="print">
@@ -46,7 +51,7 @@
 				</li>
 				<li>
 					<a href="Map">
-						<div class="parent-icon"><i class='bx bx-printer'></i>
+						<div class="parent-icon"><i class='bx bx-map' ></i>
 						</div>
 						<div class="menu-title">Map</div>
 					</a>
