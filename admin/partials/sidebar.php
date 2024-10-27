@@ -50,7 +50,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="Map">
+					<a href="map">
 						<div class="parent-icon"><i class='bx bx-map' ></i>
 						</div>
 						<div class="menu-title">Map</div>

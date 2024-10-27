@@ -36,10 +36,10 @@ if (isset($_POST['submit'])) {
             $host_family_name = $row["host_family_name"];
             $School = $row["client"];
         } else {
-            echo "No results found.";
+            $_SESSION['error'] = "No results found.";
         }
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        $_SESSION['error'] = "Error: " . $e->getMessage();    
     }
 }
 
@@ -81,70 +81,95 @@ if (isset($_POST['submit'])) {
                                                             <input type="text" class="form-control me-2" id="number" name="number" required>
                                                         </div>
                                                         <div class="col-auto">
-                                                            <input type="submit" class="btn btn-gradient-info fw-bold px-5 " name="submit" value="Search">
+                                                            <input type="submit" class="btn btn-gradient-info fw-bold px-5 " name="submit" id="search" value="Search">
                                                         </div>
                                                         <div class="col-auto">
-                                                        <button onclick="printMap()" class="btn btn-gradient-primary fw-bold px-5">Confirm Print</button>
+                                                            <button onclick="printMap()" class="btn btn-gradient-primary fw-bold px-5">Print Map</button>
                                                         </div>
-                                                        </form>
-
-                                                        
-                                                        <!-- <button onclick="closePreview()">Close Preview</button> -->
-                                                        </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>    
-                            <div class="card">
-                                <div class="card-body">
-                                    <?php if (!empty($address) && !empty($city)): ?>
-                                    <section>
-                                        <h3>Map Location</h3>
+                                </div>   
+                            </div>
+                        </div> 
+
+                        <div class="card" id="map" style="display: none;">
+                            <div class="card-body">
+                                <?php if (!empty($address) && !empty($city)): ?>
+                                    <section class="mt-3 mb-3">
+                                        <h3 class="mb-4">Student's Location</h3>
                                         <iframe 
                                             width="100%" 
                                             height="500" 
                                             src="https://maps.google.com/maps?q=<?php echo urlencode($address . ', ' . $city); ?>&output=embed">
                                         </iframe>
                                     </section>
-                
+            
                                     <div id="printPreview" style="display:none;">
                                         <div class="print-content">
-                                            <h3>Student Map</h3>
-                                            <div>
-                                                <strong>Student Name:</strong> <?php echo $student_given_name . ' ' . $student_family_name; ?><br>
-                                                <strong>Host Name:</strong> <?php echo $host_given_name . ' ' . $host_family_name; ?><br>
-                                                <strong>Address:</strong> <?php echo $address; ?><br>
-                                                <strong>City:</strong> <?php echo $city; ?><br>
+                                            <h1>Student Map</h1>
+                                            <div style="margin-bottom: 50px;">
+                                                <strong>Student Name:</strong> <?php echo $student_given_name . ' ' . $student_family_name; ?><br><br>
+                                                <strong>Host Name:</strong> <?php echo $host_given_name . ' ' . $host_family_name; ?><br><br>
+                                                <strong>Address:</strong> <?php echo $address; ?><br><br>
+                                                <strong>City:</strong> <?php echo $city; ?><br><br>
                                                 <strong>School:</strong> <?php echo $School; ?> 
                                             </div>
                                             <iframe 
                                                 width="100%" 
-                                                height="300" 
+                                                height="500" 
                                                 src="https://maps.google.com/maps?q=<?php echo urlencode($address . ', ' . $city); ?>&output=embed">
                                             </iframe>
-                                        </div>
-                                    </div>
+                                        </div>                                
+                                    </div>                            
                                 <?php endif; ?>
                             </div>
                         </div>
                     </div>
-                <?php include 'partials/endarea.php';?>
+                </div>
             </div>
-        <?php include 'partials/footer.php';?>
+        </div>
+		<!--end page wrapper -->
+
+		<?php include 'partials/endarea.php';?>
+	</div>
+
+	<?php include 'partials/footer.php';?>
 
 <script>
+    // Existing print function
+    function printMap() {
+        var printContent = document.getElementById('printPreview').innerHTML;
 
-function printMap() {
-    var printContent = document.getElementById('printPreview').innerHTML;
-    var win = window.open('', '', 'height=600,width=800');
-    win.document.write('<html><head><title>Print Map</title>');
-    win.document.write('<style>body{font-family: Arial, sans-serif;} .print-content {text-align: center;} </style>');
-    win.document.write('</head><body>');
-    win.document.write(printContent);
-    win.document.write('</body></html>');
-    win.document.close();
-    win.print();
-}
+        let printWindow = window.open('', '_blank');
+        
+        printWindow.document.write('<html><head><title>Print Map</title>');
+        printWindow.document.write('<style>body{font-family: Arial, sans-serif;} .print-content {text-align: center;} </style>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(printContent);
+
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+        
+        printWindow.onafterprint = function() {
+            printWindow.close();
+        };
+    }
+
+    // New code to show map after search
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('schoolForm');
+        const mapCard = document.getElementById('map');
+
+        form.addEventListener('submit', function() {
+            mapCard.style.display = 'block';
+        });
+
+        <?php if(isset($_POST['submit'])): ?>
+            mapCard.style.display = 'block';
+        <?php endif; ?>
+    });
 </script>
