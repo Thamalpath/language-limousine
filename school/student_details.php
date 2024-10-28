@@ -58,73 +58,95 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- Start main wrapper -->
 <main class="main-wrapper min-vh-100">
     <div class="main-content">
-        <!-- Date filter form -->
-        <form method="GET" action="student_details">
-            <label for="selected_date">Filter by Date:</label>
-            <input type="date" name="selected_date" id="selected_date" value="<?php echo htmlspecialchars($selected_date); ?>">
-            <button type="submit" class="btn btn-primary">Filter</button>
-        </form>
 
-        <div class="card mt-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Action</th>
-                                <th>#</th>
-                                <th>Actual arrival time</th>
-                                <th>Arr time</th>
-                                <th>Flight</th>
-                                <th>D or I</th>
-                                <th>M or F</th>
-                                <th>student number</th>
-                                <th>student given name</th>
-                                <th>student family name</th>
-                                <th>host given name</th>
-                                <th>host family name</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>City</th>
-                                <th>Study permit</th>
-                                <th>staff_member_assigned</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (!empty($students)): ?>
-                                <?php foreach ($students as $index => $user): ?>
-                                    <tr data-id="<?php echo htmlspecialchars($user['ID']); ?>">
-                                        <td>
-                                            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                                <a href="#" data-id="<?php echo $user['ID']; ?>" class="btn btn-grd btn-grd-danger px-4 delete-btn">Delete</a>
+        <div class="row">
+            <div class="col-xxl-12 d-flex align-items-stretch">
+                <div class="card w-100 overflow-hidden rounded-4">
+                    <div class="card-body position-relative p-4">
+                        <div class="row">
+                            <div class="col-12 col-xl-12">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <!-- Date filter form -->
+                                        <form method="GET" action="student_details" class="row g-3">
+                                            <div class="col-md-3">
+                                                <label for="selected_date" class="form-label fw-bold fs-6">Select the Date</label>
+                                                <input type="date" name="selected_date" id="selected_date" class="form-control" value="<?php echo !empty($selected_date) ? htmlspecialchars($selected_date) : date('Y-m-d'); ?>">
                                             </div>
-                                        </td>
-                                        <td><?php echo htmlspecialchars($index + 1); ?></td>
-                                        <td><?php echo htmlspecialchars($user['actual_arrival_time']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['arr_time_dep_pu_time']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['Flight']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['DI']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['M_or_F']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['student_number']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['student_given_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['student_family_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['host_given_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['host_family_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['Phone']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['Address']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['City']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['Study_Permit']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['staff_member_assigned']); ?></td>
-                                        
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="21">No students found.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                                            <div class="col-md-3">
+                                                <label for="filter" class="form-label">&nbsp;</label>
+                                                <button type="submit" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Filter</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>#</th>
+                                                        <th>Actual arrival time</th>
+                                                        <th>Arr time</th>
+                                                        <th>Flight</th>
+                                                        <th>D or I</th>
+                                                        <th>M or F</th>
+                                                        <th>student number</th>
+                                                        <th>student given name</th>
+                                                        <th>student family name</th>
+                                                        <th>host given name</th>
+                                                        <th>host family name</th>
+                                                        <th>Phone</th>
+                                                        <th>Address</th>
+                                                        <th>City</th>
+                                                        <th>Study permit</th>
+                                                        <th>staff_member_assigned</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php if (!empty($students)): ?>
+                                                        <?php foreach ($students as $index => $user): ?>
+                                                            <tr data-id="<?php echo htmlspecialchars($user['ID']); ?>">
+                                                                <td>
+                                                                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                                                        <a href="#" data-id="<?php echo $user['ID']; ?>" class="btn btn-grd btn-grd-danger px-4 delete-btn">Delete</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($index + 1); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['actual_arrival_time']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['arr_time_dep_pu_time']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['Flight']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['DI']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['M_or_F']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['student_number']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['student_given_name']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['student_family_name']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['host_given_name']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['host_family_name']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['Phone']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['Address']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['City']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['Study_Permit']); ?></td>
+                                                                <td><?php echo htmlspecialchars($user['staff_member_assigned']); ?></td>
+                                                                
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    <?php else: ?>
+                                                        <tr>
+                                                            <td colspan="21">No students found.</td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
