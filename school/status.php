@@ -21,10 +21,7 @@ $schoolId = $_SESSION['school_id'];
 // Add this code after the $schoolId declaration and before the HTML table
 
 // Prepare and execute query to get students for specific school
-$stmt = $pdo->prepare("SELECT `ID`, `actual_arrival_time`, `arr_time_dep_pu_time`, `Flight`, 
-    `DI`, `M_or_F`, `student_number`, `student_given_name`, `student_family_name`, 
-    `host_given_name`, `host_family_name`, `Phone`, `Address`, `City`, `Study_Permit`, 
-    `staff_member_assigned` 
+$stmt = $pdo->prepare("SELECT *
     FROM `students` 
     WHERE `client` = ?
     ORDER BY `ID` DESC");
@@ -70,9 +67,6 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <th>#</th>
                                                             <th>Actual arrival time</th>
                                                             <th>Arr time</th>
-                                                            <th>Flight</th>
-                                                            <th>D or I</th>
-                                                            <th>M or F</th>
                                                             <th>student number</th>
                                                             <th>student given name</th>
                                                             <th>student family name</th>
@@ -81,8 +75,9 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <th>Phone</th>
                                                             <th>Address</th>
                                                             <th>City</th>
-                                                            <th>Study permit</th>
-                                                            <th>staff_member_assigned</th>
+                                                            <th>City</th>
+                                                            <th>City</th>
+                                                            <th>City</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -92,9 +87,6 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                     <td><?php echo htmlspecialchars($index + 1); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['actual_arrival_time']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['arr_time_dep_pu_time']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['Flight']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['DI']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['M_or_F']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_number']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_given_name']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_family_name']); ?></td>
@@ -103,8 +95,9 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                     <td><?php echo htmlspecialchars($user['Phone']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['Address']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['City']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['Study_Permit']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['staff_member_assigned']); ?></td>
+                                                                    <td><?php echo htmlspecialchars($user['waiting_for_student_at_airport']); ?></td>
+                                                                    <td><?php echo htmlspecialchars($user['student_in_car_to_host']); ?></td>
+                                                                    <td><?php echo htmlspecialchars($user['student_delivered_to_homestay_home']); ?></td>
                                                                     
                                                                 </tr>
                                                             <?php endforeach; ?>

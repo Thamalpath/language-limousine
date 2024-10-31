@@ -27,6 +27,13 @@
               <div class="menu-title">Add Time</div>
             </a>
           </li>  
+          <li>
+            <a href="absent_students">
+              <div class="parent-icon"><i class="material-icons-outlined">feedback</i>
+              </div>
+              <div class="menu-title">Absent Feedback</div>
+            </a>
+          </li> 
         </ul>
 
          <!--end navigation-->
