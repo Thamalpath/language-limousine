@@ -71,13 +71,10 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <th>student given name</th>
                                                             <th>student family name</th>
                                                             <th>host given name</th>
-                                                            <th>host family name</th>
-                                                            <th>Phone</th>
-                                                            <th>Address</th>
-                                                            <th>City</th>
-                                                            <th>City</th>
-                                                            <th>City</th>
-                                                            <th>City</th>
+                                                            <th>Waiting</th>
+                                                            <th>In car</th>
+                                                            <th>Delivered</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -91,10 +88,6 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                     <td><?php echo htmlspecialchars($user['student_given_name']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_family_name']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['host_given_name']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['host_family_name']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['Phone']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['Address']); ?></td>
-                                                                    <td><?php echo htmlspecialchars($user['City']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['waiting_for_student_at_airport']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_in_car_to_host']); ?></td>
                                                                     <td><?php echo htmlspecialchars($user['student_delivered_to_homestay_home']); ?></td>
