@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 function assignDrivers($pdo) {
-
-    $driver_id = isset($_POST['driverId']) ? $_POST['driverId'] : null;
+    // Assign based on whichever driverId is filled out
+    $driver_id = !empty($_POST['driverId']) ? $_POST['driverId'] : $_POST['subDriverId'];
 
     if (!$driver_id) {
         error_log('Driver ID is invalid or not set.');
@@ -40,21 +40,14 @@ function assignDrivers($pdo) {
     error_log('Selected IDs: ' . implode(', ', $selected_ids));
 
     if (!empty($selected_ids) && !empty($driver_id)) {
-
         $ids_placeholder = implode(',', array_fill(0, count($selected_ids), '?'));
-
         $update_query = "UPDATE students SET driverId = ? WHERE ID IN ($ids_placeholder)";
         
         try {
-
             $stmt = $pdo->prepare($update_query);
-
             $params = array_merge([$driver_id], $selected_ids);
-
             if ($stmt->execute($params)) {
                 return 'success';
-                header("Location: " . $_SERVER['PHP_SELF']);
-                exit();
             } else {
                 error_log('Failed to execute the driver assignment query.');
                 return 'failure';
@@ -64,7 +57,6 @@ function assignDrivers($pdo) {
             return 'failure';
         }
     } else {
-
         error_log('Empty selected IDs or invalid driver ID.');
     }
     return 'failure';
@@ -179,16 +171,16 @@ function displayStudents($pdo) {
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select Driver</label>
-                                                    <select class="form-select" name="driverId" id="driverId" >
+                                                    <label for="driverId" class="form-label fw-bold fs-6">Select Driver</label>
+                                                    <select class="form-select" name="driverId" id="driverId">
                                                         <option value="">-- Select Driver --</option>
                                                         <?php echo fetchDrivers($pdo); ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select sub Driver</label>
-                                                    <select class="form-select" name="driverId" id="driverId" >
-                                                        <option value="">-- Select Driver --</option>
+                                                    <label for="subDriverId" class="form-label fw-bold fs-6">Select Sub Driver</label>
+                                                    <select class="form-select" name="subDriverId" id="subDriverId">
+                                                        <option value="">-- Select Sub Driver --</option>
                                                         <?php echo fetchsubDrivers($pdo); ?>
                                                     </select>
                                                 </div>
