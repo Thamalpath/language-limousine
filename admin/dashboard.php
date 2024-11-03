@@ -12,7 +12,20 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || !in_array($_SES
     header("Location: ./");
     exit();
 }
+function getTableCounts($pdo) {
+    $tables = ['students', 'drivers',  'greeters', 'school'];
+    $counts = [];
 
+    foreach ($tables as $table) {
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM $table");
+        $stmt->execute();
+        $counts[$table] = $stmt->fetchColumn();
+    }
+
+    return $counts;
+}
+
+$tableCounts = getTableCounts($pdo);
 ?>
 	
 	<?php include 'partials/header.php';?>
@@ -35,69 +48,75 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || !in_array($_SES
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
-
 				<div class="row row-cols-1 row-cols-lg-4">
+					<!-- Students Count Card -->
 					<div class="col">
 						<div class="card rounded-4 bg-gradient-rainbow bubble position-relative overflow-hidden">
 							<div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between mb-0">
-                                   <div class="">
-									  <h4 class="mb-0 text-white">986</h4>
-									  <p class="mb-0 text-white">Total Orders</p>
-								   </div>
-								   <div class="fs-1 text-white">
-									<i class='bx bx-cart'></i>
-								   </div>
+								<div class="d-flex align-items-center justify-content-between mb-0">
+									<div>
+										<h4 class="mb-0 text-white"><?php echo $tableCounts['students']; ?></h4>
+										<p class="mb-0 text-white">Total Students</p>
+									</div>
+									<div class="fs-1 text-white">
+										<i class='bx bx-user'></i>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- Drivers Count Card -->
 					<div class="col">
 						<div class="card rounded-4 bg-gradient-burning bubble position-relative overflow-hidden">
 							<div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between mb-0">
-									<div class="">
-										<h3 class="mb-0 text-white">986</h3>
-										<h6 class="mb-0 text-white">Patients</h6>
+								<div class="d-flex align-items-center justify-content-between mb-0">
+									<div>
+										<h3 class="mb-0 text-white"><?php echo $tableCounts['drivers']; ?></h3>
+										<h6 class="mb-0 text-white">Total Drivers</h6>
 									</div>
-								   <div class="fs-1 text-white">
-									<i class='bx bx-user-plus'></i>
-								   </div>
+									<div class="fs-1 text-white">
+										<i class='bx bx-car'></i>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- Subdrivers Count Card -->
 					<div class="col">
 						<div class="card rounded-4 bg-gradient-moonlit bubble position-relative overflow-hidden">
 							<div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between mb-0">
-                                   <div class="">
-									  <h4 class="mb-0 text-white">$24K</h4>
-									  <p class="mb-0 text-white">Total Revenue</p>
-								   </div>
-								   <div class="fs-1 text-white">
-									  <i class='bx bx-wallet' ></i>
-								   </div>
+								<div class="d-flex align-items-center justify-content-between mb-0">
+									<div>
+										<!-- <h4 class="mb-0 text-white"><?php echo $tableCounts['subdrivers']; ?></h4> -->
+										<p class="mb-0 text-white">Total Subdrivers</p>
+									</div>
+									<div class="fs-1 text-white">
+										<i class='bx bx-user-circle'></i>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- Greeters Count Card -->
 					<div class="col">
 						<div class="card rounded-4 bg-gradient-cosmic bubble position-relative overflow-hidden">
 							<div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between mb-0">
-                                   <div class="">
-									  <h4 class="mb-0 text-white">22%</h4>
-									  <p class="mb-0 text-white">Total Growth</p>
-								   </div>
-								   <div class="fs-1 text-white">
-									 <i class='bx bx-line-chart-down'></i>
-								   </div>
+								<div class="d-flex align-items-center justify-content-between mb-0">
+									<div>
+										<h4 class="mb-0 text-white"><?php echo $tableCounts['greeters']; ?></h4>
+										<p class="mb-0 text-white">Total Greeters</p>
+									</div>
+									<div class="fs-1 text-white">
+										<i class='bx bx-hand'></i>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div><!--end row--> 
+				</div><!-- end row -->
+			</div><!-- end page-content -->
+		</div><!-- end page-wrapper -->
+
 			</div>
 		</div>
 		<!--end page wrapper -->
