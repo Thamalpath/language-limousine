@@ -15,7 +15,6 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || $_SESSION['role
     exit();
 }
 
-
 if (isset($_POST['update_time'])) {
     $student_id = $_POST['student_id'];
     $current_time = date('H:i:s');
@@ -38,39 +37,37 @@ if (isset($_POST['update_time'])) {
 }
 
 function displayStudents($pdo) {
-    if (isset($_POST['search'])) {
-        $selected_date = $_POST['date'];
-        $query = "SELECT * FROM students WHERE Date = :Date AND student_in_car_to_host IS NULL";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':Date', $selected_date, PDO::PARAM_STR);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $current_date = date('Y-m-d');
+    $query = "SELECT * FROM students WHERE Date = :Date AND student_in_car_to_host IS NULL";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':Date', $current_date, PDO::PARAM_STR);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!empty($results)) {
-            $rows = '';
-            foreach ($results as $row) {
-                $time_button = !empty($row['waiting_for_student_at_airport']) ? $row['waiting_for_student_at_airport'] : 'Time';
+    if (!empty($results)) {
+        $rows = '';
+        foreach ($results as $row) {
+            $time_button = !empty($row['waiting_for_student_at_airport']) ? 
+                        $row['waiting_for_student_at_airport'] : 'Time';
 
-                $rows .= "<tr style='text-align:center'>
-                            <td>
-                                <form method='POST'>
-                                    <input type='hidden' name='student_id' value='{$row['ID']}'>
-                                    <input type='submit' name='update_time' value='$time_button' class='btn btn-primary'>
-                                </form>
-                            </td>
-                            <td>{$row['student_number']}</td>
-                            <td>{$row['student_given_name']}</td>
-                            <td>{$row['ID']}</td>
-                            <td>{$row['arr_time_dep_pu_time']}</td>
-                            <td>{$row['Flight']}</td>
-                        </tr>";
-            }
-            return $rows;
-        } else {
-            return "<tr><td colspan='12'>No records found for the selected date.</td></tr>";
+            $rows .= "<tr style='text-align:center'>
+                        <td>
+                            <form method='POST'>
+                                <input type='hidden' name='student_id' value='{$row['ID']}'>
+                                <input type='submit' name='update_time' value='$time_button' class='btn btn-primary'>
+                            </form>
+                        </td>
+                        <td>{$row['student_number']}</td>
+                        <td>{$row['student_given_name']}</td>
+                        <td>{$row['ID']}</td>
+                        <td>{$row['arr_time_dep_pu_time']}</td>
+                        <td>{$row['Flight']}</td>
+                    </tr>";
         }
+        return $rows;
+    } else {
+        return "<tr><td colspan='12'>No records found for today.</td></tr>";
     }
-    return '';
 }
 
 ?>
@@ -94,17 +91,7 @@ function displayStudents($pdo) {
                                 <div class="col-12 col-xl-12">
                                     <div class="card">
                                         <div class="card-body p-4">
-                                            <form method="POST" class="row g-3">
-                                                <div class="col-md-3">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select the Date</label>
-                                                    <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" required>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label for="addItem" class="form-label">&nbsp;</label>
-                                                    <button type="submit" name="search" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Search</button>
-                                                </div>
-
-                                                <div class="table-responsive">
+                                            <div class="table-responsive">
                                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                                     <thead>
                                                         <tr>
@@ -121,7 +108,7 @@ function displayStudents($pdo) {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </form> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>

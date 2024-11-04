@@ -24,7 +24,7 @@
             <a href="time">
               <div class="parent-icon"><i class="material-icons-outlined">schedule</i>
               </div>
-              <div class="menu-title">Add Time</div>
+              <div class="menu-title">Update Waiting Time</div>
             </a>
           </li>  
           <li>
