@@ -53,6 +53,13 @@
 					</ul>
 				</li>
 				<li>
+					<a href="update-time">
+						<div class="parent-icon"><i class='bx bx-time-five'></i>
+						</div>
+						<div class="menu-title">Update Waiting Time</div>
+					</a>
+				</li>
+				<li>
 					<a href="print">
 						<div class="parent-icon"><i class='bx bx-printer'></i>
 						</div>
