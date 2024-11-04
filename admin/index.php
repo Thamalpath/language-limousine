@@ -6,7 +6,7 @@ ob_start();
 session_start();
 $message = ob_get_clean();
 include 'config/dbcon.php';
-
+date_default_timezone_set('America/Vancouver');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);

@@ -1,10 +1,12 @@
 <?php
-// Error reporting setup for debugging
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
+ob_start();
 session_start();
+$message = ob_get_clean();
+date_default_timezone_set('America/Vancouver');
+
 include 'config/dbcon.php';
 
 // Check if the user is authorized

@@ -6,6 +6,7 @@ ob_start();
 session_start();
 $message = ob_get_clean();
 include 'config/dbcon.php';
+date_default_timezone_set('America/Vancouver');
 
 if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || !in_array($_SESSION['role'], ['Admin'])) {
     header("Location: ./");
