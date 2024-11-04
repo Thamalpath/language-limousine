@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ob_start();
 session_start();
 $message = ob_get_clean();
-
+date_default_timezone_set('America/Vancouver');
 include 'config/dbcon.php';
 
 // User session check
