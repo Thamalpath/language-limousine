@@ -63,13 +63,6 @@
 						<div class="menu-title">Map</div>
 					</a>
 				</li>
-				<li>
-					<a href="driver_status">
-						<div class="parent-icon"><i class='bx bxs-flag-checkered'></i>
-						</div>
-						<div class="menu-title">Driver status</div>
-					</a>
-				</li>
 			</ul>
 
 			<!--end navigation-->
