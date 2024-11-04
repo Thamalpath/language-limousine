@@ -13,7 +13,7 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || !in_array($_SES
     exit();
 }
 function getTableCounts($pdo) {
-    $tables = ['students', 'drivers',  'greeters', 'school'];
+    $tables = ['students', 'drivers', 'greeters', 'school', '`sub-drivers`'];
     $counts = [];
 
     foreach ($tables as $table) {
@@ -25,8 +25,7 @@ function getTableCounts($pdo) {
     return $counts;
 }
 
-$tableCounts = getTableCounts($pdo);
-?>
+$tableCounts = getTableCounts($pdo);?>
 	
 	<?php include 'partials/header.php';?>
 
@@ -87,7 +86,7 @@ $tableCounts = getTableCounts($pdo);
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between mb-0">
 									<div>
-										<!-- <h4 class="mb-0 text-white"><?php echo $tableCounts['subdrivers']; ?></h4> -->
+										<h4 class="mb-0 text-white"><?php echo $tableCounts['`sub-drivers`']; ?></h4>
 										<p class="mb-0 text-white">Total Subdrivers</p>
 									</div>
 									<div class="fs-1 text-white">
