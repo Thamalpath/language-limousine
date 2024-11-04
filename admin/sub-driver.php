@@ -27,12 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($subdri_id) {
             // Update existing driver
             $sql = "UPDATE `sub-drivers` SET username = :username, email = :email,
-                    driverId = :driverId, vehicle_no = :vehicle_no";
+                    driverId = :driverId, vehicle_no = :vehicle_no, status = :status";
             $params = [
                 'username' => $username,
                 'email' => $email,
                 'driverId' => $driverId,
                 'vehicle_no' => $vehicle_no,
+                'status' => $_POST['status'],
                 'subdri_id' => $subdri_id
             ];
             
@@ -191,17 +192,26 @@ $sub_drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <input type="password" class="form-control" name="password" id="password" value="<?php echo isset($form_data['password']) ? htmlspecialchars($form_data['password']) : ''; ?>">
                                                         </div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="driverId" class="form-label fw-bold font-18">Driver ID</label>
                                                             <input type="text" class="form-control" name="driverId" id="driverId" value="<?php echo isset($form_data['driverId']) ? htmlspecialchars($form_data['driverId']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a driver ID.</div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="vehicle_no" class="form-label fw-bold font-18">Vehicle No</label>
                                                             <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" value="<?php echo isset($form_data['vehicle_no']) ? htmlspecialchars($form_data['vehicle_no']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a vehicle No.</div>
                                                         </div>
-                                                        <div class="col-md-4 mb-4">
+                                                        <div class="col-md-3">
+                                                            <label for="status" class="form-label fw-bold font-18">Status</label>
+                                                            <select class="form-select" name="status" id="status" required>
+                                                                <option value="" selected disabled>Select Status</option>
+                                                                <option value="onduty" <?php echo (isset($form_data['status']) && $form_data['status'] == 'onduty') ? 'selected' : ''; ?>>On Duty</option>
+                                                                <option value="offduty" <?php echo (isset($form_data['status']) && $form_data['status'] == 'offduty') ? 'selected' : ''; ?>>Off Duty</option>
+                                                            </select>
+                                                            <div class="invalid-feedback">Please select a status.</div>
+                                                        </div> 
+                                                        <div class="col-md-3 mb-4">
                                                             <label for="role" class="form-label fw-bold font-18">Role</label>
                                                             <input type="text" class="form-control" name="role" id="role" value="SubDriver" readonly>
                                                         </div>
@@ -309,6 +319,7 @@ $sub_drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         document.getElementById('driverId').value = data.driverId;
                         document.getElementById('vehicle_no').value = data.vehicle_no;
                         document.getElementById('role').value = data.role;
+                        document.getElementById('status').value = data.status;
 
                         submitBtn.textContent = 'Update';
                         submitBtn.classList.remove('btn-gradient-info');

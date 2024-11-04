@@ -28,13 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($driver_id) {
             // Update existing driver
             $sql = "UPDATE drivers SET username = :username, email = :email, gender = :gender, 
-                    driverId = :driverId, vehicle_no = :vehicle_no";
+                    driverId = :driverId, vehicle_no = :vehicle_no, status = :status";
             $params = [
                 'username' => $username,
                 'email' => $email,
                 'gender' => $gender,
                 'driverId' => $driverId,
                 'vehicle_no' => $vehicle_no,
+                'status' => $status,
                 'driver_id' => $driver_id
             ];
             
@@ -173,26 +174,26 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_id'])) {
                                                         </div>
                                                         <hr>
                                                         <input type="hidden" name="driver_id" id="driver_id" value="<?php echo isset($form_data['driver_id']) ? htmlspecialchars($form_data['driver_id']) : ''; ?>">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="username" class="form-label fw-bold font-18">Username</label>
                                                             <input type="text" class="form-control" name="username" id="username" value="<?php echo isset($form_data['username']) ? htmlspecialchars($form_data['username']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a username.</div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="email" class="form-label fw-bold font-18">Email</label>
                                                             <input type="email" class="form-control" name="email" id="email" value="<?php echo isset($form_data['email']) ? htmlspecialchars($form_data['email']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a valid email.</div>
                                                         </div>
-                                                        <div class="col-md-4 mb-4">
+                                                        <div class="col-md-3">
                                                             <label for="password" class="form-label fw-bold font-18">Password</label>
                                                             <input type="password" class="form-control" name="password" id="password" value="<?php echo isset($form_data['password']) ? htmlspecialchars($form_data['password']) : ''; ?>">
                                                         </div>
-
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-3 mb-4">
                                                             <label for="gender" class="form-label fw-bold font-18">Gender</label>
                                                             <input type="text" class="form-control" name="gender" id="gender" value="<?php echo isset($form_data['gender']) ? htmlspecialchars($form_data['gender']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a gender.</div>
                                                         </div>
+
                                                         <div class="col-md-3">
                                                             <label for="driverId" class="form-label fw-bold font-18">Driver ID</label>
                                                             <input type="text" class="form-control" name="driverId" id="driverId" value="<?php echo isset($form_data['driverId']) ? htmlspecialchars($form_data['driverId']) : ''; ?>" required>
@@ -203,6 +204,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_id'])) {
                                                             <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" value="<?php echo isset($form_data['vehicle_no']) ? htmlspecialchars($form_data['vehicle_no']) : ''; ?>" required>
                                                             <div class="invalid-feedback">Please provide a vehicle No.</div>
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <label for="status" class="form-label fw-bold font-18">Status</label>
+                                                            <select class="form-select" name="status" id="status" required>
+                                                                <option value="" selected disabled>Select Status</option>
+                                                                <option value="onduty" <?php echo (isset($form_data['status']) && $form_data['status'] == 'onduty') ? 'selected' : ''; ?>>On Duty</option>
+                                                                <option value="offduty" <?php echo (isset($form_data['status']) && $form_data['status'] == 'offduty') ? 'selected' : ''; ?>>Off Duty</option>
+                                                            </select>
+                                                            <div class="invalid-feedback">Please select a status.</div>
+                                                        </div>                                                        
                                                         <div class="col-md-3 mb-4">
                                                             <label for="role" class="form-label fw-bold font-18">Role</label>
                                                             <input type="text" class="form-control" name="role" id="role" value="Driver" readonly>
@@ -320,6 +330,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_id'])) {
                         document.getElementById('driverId').value = data.driverId;
                         document.getElementById('vehicle_no').value = data.vehicle_no;
                         document.getElementById('role').value = data.role;
+                        document.getElementById('status').value = data.status;
 
                         submitBtn.textContent = 'Update';
                         submitBtn.classList.remove('btn-gradient-info');
