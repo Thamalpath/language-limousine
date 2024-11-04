@@ -105,7 +105,7 @@ $message = ob_get_clean();
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-grd-primary">Login</button>
+													<button type="submit" class="btn btn-grd-primary fw-bold text-white">Login</button>
 												</div>
 											</div>
 										</form>
