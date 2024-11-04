@@ -98,40 +98,36 @@ function fetchsubDrivers($pdo) {
     return $options;
 }
 
-// Function to display students based on selected date
+// Function to display students for current date
 function displayStudents($pdo) {
-    if (isset($_POST['search'])) {
-        $selected_date = $_POST['date'];
-        $query = "SELECT * FROM students WHERE Date = :Date AND driverId IS NULL";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':Date', $selected_date, PDO::PARAM_STR);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $current_date = date('Y-m-d');
+    $query = "SELECT * FROM students WHERE Date = :Date AND driverId IS NULL";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':Date', $current_date, PDO::PARAM_STR);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!empty($results)) {
-            $rows = '';
-            foreach ($results as $row) {
-                $rows .= "<tr style='text-align:center'>
-                            <td><input type='checkbox' name='selected_row[]' value='{$row['ID']}'></td>
-                            <td>{$row['ID']}</td>
-                            <td>{$row['arr_time_dep_pu_time']}</td>
-                            <td>{$row['Flight']}</td>
-                            <td>{$row['DI']}</td>
-                            <td>{$row['student_number']}</td>
-                            <td>{$row['student_given_name']}</td>
-                            <td>{$row['host_given_name']}</td>
-                            <td>{$row['Phone']}</td>
-                            <td>{$row['Address']}</td>
-                            <td>{$row['City']}</td>
-                            <td>{$row['School']}</td>
-                        </tr>";
-            }
-            return $rows;
-        } else {
-            return "<tr><td colspan='12'>No records found for the selected date</td></tr>";
+    if (!empty($results)) {
+        $rows = '';
+        foreach ($results as $row) {
+            $rows .= "<tr style='text-align:center'>
+                        <td><input type='checkbox' name='selected_row[]' value='{$row['ID']}'></td>
+                        <td>{$row['ID']}</td>
+                        <td>{$row['arr_time_dep_pu_time']}</td>
+                        <td>{$row['Flight']}</td>
+                        <td>{$row['DI']}</td>
+                        <td>{$row['student_number']}</td>
+                        <td>{$row['student_given_name']}</td>
+                        <td>{$row['host_given_name']}</td>
+                        <td>{$row['Phone']}</td>
+                        <td>{$row['Address']}</td>
+                        <td>{$row['City']}</td>
+                        <td>{$row['School']}</td>
+                    </tr>";
         }
+        return $rows;
     }
-    return '';
+    return "<tr><td colspan='12'>No records found for today</td></tr>";
 }
 
 ?>
@@ -162,15 +158,6 @@ function displayStudents($pdo) {
                                         <div class="card-body p-4">
                                             <form method="POST" class="row g-3">
                                                 <div class="col-md-3">
-                                                    <label for="date" class="form-label fw-bold fs-6">Select the Date</label>
-                                                    <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" required>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label for="addItem" class="form-label">&nbsp;</label>
-                                                    <button type="submit" name="search" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Search</button>
-                                                </div>
-
-                                                <div class="col-md-3">
                                                     <label for="driverId" class="form-label fw-bold fs-6">Select Driver</label>
                                                     <select class="form-select" name="driverId" id="driverId">
                                                         <option value="">-- Select Driver --</option>
@@ -184,34 +171,36 @@ function displayStudents($pdo) {
                                                         <?php echo fetchsubDrivers($pdo); ?>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-3 mb-4">
+                                                <div class="col-md-3 mb-4 pt-2">
                                                     <label for="assign" class="form-label">&nbsp;</label>
                                                     <button type="submit" name="assign" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Assign</button>
                                                 </div>
                                                 <div class="table-responsive">
-                                                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Pick</th>
-                                                            <th>ID</th>
-                                                            <th>Arrival Time</th>
-                                                            <th>Flight</th>
-                                                            <th>D or I</th>
-                                                            <th>Student Number</th>
-                                                            <th>Student Given Name</th>
-                                                            <th>Host Given Name</th>
-                                                            <th>Phone Numbers</th>
-                                                            <th>Address</th>
-                                                            <th>City</th>
-                                                            <th>School</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php echo displayStudents($pdo); ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </form> 
+                                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                        <!-- Table headers remain the same -->
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Pick</th>
+                                                                <th>ID</th>
+                                                                <th>Arrival Time</th>
+                                                                <th>Flight</th>
+                                                                <th>D or I</th>
+                                                                <th>Student Number</th>
+                                                                <th>Student Given Name</th>
+                                                                <th>Host Given Name</th>
+                                                                <th>Phone Numbers</th>
+                                                                <th>Address</th>
+                                                                <th>City</th>
+                                                                <th>School</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php echo displayStudents($pdo); ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
