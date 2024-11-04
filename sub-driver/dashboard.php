@@ -66,7 +66,7 @@ function displayStudents($pdo) {
         
         $query = "SELECT * FROM students 
                 WHERE Date = :current_date 
-                AND subDriverId = :driverId 
+                AND driverId = :driverId 
                 ORDER BY arr_time_dep_pu_time ASC";
         
         $stmt = $pdo->prepare($query);
