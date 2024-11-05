@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'gender' => $gender,
                 'driverId' => $driverId,
                 'vehicle_no' => $vehicle_no,
-                'status' => $status,
+                'status' => $_POST['status'],
                 'driver_id' => $driver_id
             ];
             
