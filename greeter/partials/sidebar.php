@@ -36,15 +36,8 @@
           </li> 
         </ul>
 
-         <!--end navigation-->
+        <!--end navigation-->
         <ul class="metismenu" id="sidenav" style="position: absolute; bottom: 10px; width: 100%;">
-        <li>
-            <a href="profile">
-              <div class="parent-icon"><i class="material-icons-outlined">account_circle</i>
-              </div>
-              <div class="menu-title">Profile</div>
-            </a>
-          </li>
           <li>
             <a href="logout">
               <div class="parent-icon"><i class="material-icons-outlined">logout</i>
