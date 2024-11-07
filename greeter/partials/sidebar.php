@@ -28,7 +28,7 @@
             </a>
           </li>  
           <li>
-            <a href="absent_students">
+            <a href="feedback">
               <div class="parent-icon"><i class="material-icons-outlined">feedback</i>
               </div>
               <div class="menu-title">Absent Feedback</div>
