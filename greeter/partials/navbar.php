@@ -36,8 +36,6 @@
               </div>
             </a>
             <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">person_outline</i>Profile</a>
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="logout"><i
             class="material-icons-outlined">power_settings_new</i>Logout</a>
           </div>
