@@ -1368,7 +1368,6 @@ label {
 	line-height: 1;
 	padding: 16px 50px;
 	position: relative;
-	margin-bottom: 75px;
 }
 .s-slider-content h6::before {
 	content: "";
