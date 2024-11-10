@@ -239,17 +239,8 @@
                         <div class="row align-items-center">
                             <div class="col-xl-5 col-lg-8 order-2 order-lg-0">
                                 <div class="video-title">
-                                    <h2><span>Top service for</span>students.</h2>
+                                    <h2><span>Top service for</span>students</h2>
                                     <a href="#">more services<span></span></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="video-play">
-                                    <a
-                                        href="https://www.youtube.com/watch?v=iWKu6WNFf9M"
-                                        class="popup-video"><img
-                                            src="img/icon/play_btn.png"
-                                            alt="img"></a>
                                 </div>
                             </div>
                         </div>

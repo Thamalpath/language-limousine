@@ -59,46 +59,101 @@
                                 </div>
                                 <div class="int-services-content">
                                     <ul style="list-style-type: bullet;">
-                                        <li style="margin-bottom: 15px;">Professional and experienced drivers with proper licensing and background checks</li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">Licensed Vehicles – <span style="font-weight: normal;">We at Language Limousine have plenty of licensed vehicles. We have developed strategies to maximize the probability of meeting your student and thereby ensuring them a great welcome to Canada.</span></li>
 
-                                        <li style="margin-bottom: 15px;">24/7 airport pickup and drop-off services for international students</li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">Live Tracking – <span style="font-weight: normal;">No other company offers a “live” website that allows you, your agents, host families, and the students’ parents real time information regarding the students status. With one click, our Student Tracking allows you to track if the student has been greeted, is in transit, or has been delivered to their homestay.</span></li>
 
-                                        <li style="margin-bottom: 15px;">Reliable transportation with modern, well-maintained vehicle fleet</li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">24 Hour Access – <span style="font-weight: normal;"> Students have 24 hour “live” access to our company and are given our “Upon Your Arrival” letter that advises them of our “live” emergency number, tells them exactly where to meet us (map included), has pictures of our uniformed staff, and folded is a sign that they can hold as they arrive that allows us to immediately identify them.</span></li>
                                     </ul>                            
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="overlay-title paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15" data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground" data-paroller-direction="horizontal">Cargo</div>
+                <div class="overlay-title paroller" data-paroller-factor="0.18" data-paroller-factor-lg="0.18" data-paroller-factor-md="0.18" data-paroller-factor-sm="0.18" data-paroller-type="foreground" data-paroller-direction="horizontal">Language Limousine</div>
             </section>
             <!-- services-area-end -->
 
-            <!-- video-area -->
-            <section class="video-area video-bg">
+            <!-- fact-area -->
+            <section class="fact-area pt-120 pb-65">
                 <div class="container">
-                    <div class="video-overlay s-video-overlay">
-                        <div class="row align-items-center">
-                            <div class="col-xl-5 col-lg-8 order-2 order-lg-0">
-                                <div class="video-title">
-                                    <span>Our Chalanges</span>
-                                    <h2><span>never</span> break our promise</h2>
-                                    <a href="#">more services<span></span></a>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-fact mb-50">
+                                <div class="fact-icon mb-25">
+                                    <i class="flaticon-package"></i>
+                                </div>
+                                <div class="fact-content">
+                                    <h4><span class="count">3,560</span></h4>
+                                    <h6>Students Transported</h6>
+                                    <p>Express delivery is an innaiv service
+                                        effective logistics solution</p>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="video-play">
-                                    <a href="https://www.youtube.com/watch?v=iWKu6WNFf9M" class="popup-video"><img src="img/icon/play_btn.png" alt="img"></a>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-fact mb-50">
+                                <div class="fact-icon mb-25">
+                                    <i class="flaticon-placeholder"></i>
+                                </div>
+                                <div class="fact-content">
+                                    <h4><span class="count">195</span></h4>
+                                    <h6>Countries Covered</h6>
+                                    <p>Express delivery is an innaiv service
+                                        effective logistics solution</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-fact mb-50">
+                                <div class="fact-icon mb-25">
+                                    <i class="flaticon-user"></i>
+                                </div>
+                                <div class="fact-content">
+                                    <h4><span class="count">456</span> k</h4>
+                                    <h6>Happy Customer</h6>
+                                    <p>Express delivery is an innaiv service
+                                        effective logistics solution</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-fact mb-50">
+                                <div class="fact-icon mb-25">
+                                    <i class="flaticon-like"></i>
+                                </div>
+                                <div class="fact-content">
+                                    <h4><span class="count">99</span> Yr</h4>
+                                    <h6>Year Experience</h6>
+                                    <p>Express delivery is an innaiv service
+                                        effective logistics solution</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- fact-area-end -->
+
+            <!-- video-area -->
+            <!-- <section class="video-area video-bg">
+                <div class="container">
+                    <div class="video-overlay s-video-overlay">
+                        <div class="row align-items-center">
+                            <div class="col-xl-5 col-lg-8 order-2 order-lg-0">
+                                <div class="video-title">
+                                    <h2><span>Top service for</span> students</h2>
+                                    <a href="#">more services<span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
             <!-- video-area-end -->
 
             <!-- faq-area -->
-            <section class="faq-area faq-bg pt-110 pb-120">
+            <!-- <section class="faq-area faq-bg pt-110 pb-120">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-7 col-lg-10">
@@ -624,9 +679,8 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- faq-area-end -->
-            <!-- newsletter-end -->
 
         </main>
         <!-- main-area-end -->
