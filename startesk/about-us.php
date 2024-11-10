@@ -682,5 +682,5 @@
         <!-- main-area-end -->
 
         <!-- footer -->
-        <?php include 'partials/footer1.php';?>        
+        <?php include 'partials/footer.php';?>        
         <!-- footer-end -->
