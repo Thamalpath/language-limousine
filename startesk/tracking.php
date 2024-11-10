@@ -82,68 +82,13 @@ if ($student) {
             </div>
             <!-- breadcrumb-area-end -->
 
-            <!-- category-area -->
-            <section class="category-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="category-list s-category-list">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="category-icon">
-                                                <i class="flaticon-cruise"></i>
-                                            </div>
-                                            <h5>Sea Freight</h5>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="category-icon">
-                                                <i class="flaticon-air-freight"></i>
-                                            </div>
-                                            <h5>Air Freight</h5>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="category-icon">
-                                                <i class="flaticon-delivery-1"></i>
-                                            </div>
-                                            <h5>Insurance</h5>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="category-icon">
-                                                <i class="flaticon-warehouse"></i>
-                                            </div>
-                                            <h5>Warehousing</h5>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="category-icon">
-                                                <i class="flaticon-package"></i>
-                                            </div>
-                                            <h5>Forwarding</h5>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- category-area-end -->
-
             <!-- tracking-area -->
             <div class="tracking-area pt-95 pb-115">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-10">
                             <div class="tracking-id-info text-center">
-                                <p>Enter Student Number or Name</p>
+                                <h4>Enter Student Number or Name</h4>
                                 <form action="" method="POST" class="tracking-id-form">
                                     <input type="text" name="searchValue" placeholder="Student Number or Name" value="<?= htmlspecialchars($searchValue) ?>">
                                     <button type="submit" class="btn red-btn">Submit</button>
