@@ -35,61 +35,8 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-7 col-lg-10">
                             <div class="s-section-title text-center mb-60">
-                                <h2>Cargo Delivery</h2>
-                                <p>Express delivery is an innovative service is effective logistics solution for the delivery of
-                                    small cargo. This service is useful for companies various.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="services-wrapper">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-services mb-30">
-                                    <div class="services-thumb">
-                                        <a href="#"><img src="img/images/services_img01.jpg" alt="img"></a>
-                                    </div>
-                                    <div class="services-content">
-                                        <div class="services-icon">
-                                            <i class="flaticon-shipping-and-delivery"></i>
-                                        </div>
-                                        <h3><a href="#">More Control, for Free</a></h3>
-                                        <span>Delivery Service</span>
-                                        <p>Express delivery is an innovativ service is effective logistics solutio for delivery of
-                                            small cargo service.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-services mb-30">
-                                    <div class="services-thumb">
-                                        <a href="#"><img src="img/images/services_img02.jpg" alt="img"></a>
-                                    </div>
-                                    <div class="services-content">
-                                        <div class="services-icon">
-                                            <i class="flaticon-shipping"></i>
-                                        </div>
-                                        <h3><a href="#">Expand with E-Commerce</a></h3>
-                                        <span>Delivery Service</span>
-                                        <p>Express delivery is an innovativ service is effective logistics solutio for delivery of
-                                            small cargo service.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-services mb-30">
-                                    <div class="services-thumb">
-                                        <a href="#"><img src="img/images/services_img03.jpg" alt="img"></a>
-                                    </div>
-                                    <div class="services-content">
-                                        <div class="services-icon">
-                                            <i class="flaticon-location"></i>
-                                        </div>
-                                        <h3><a href="#">More Than Anywhere Shipping</a></h3>
-                                        <span>Delivery Service</span>
-                                        <p>Express delivery is an innovativ service is effective logistics solutio for delivery of
-                                            small cargo service.</p>
-                                    </div>
-                                </div>
+                                <h2>Language Limousine</h2>
+                                <p>Language Limousine staff are at the airport every day. We have come to know the airport and our experience enables us to locate students much easier than anyone else. Finding a student at the airport can be a very difficult task. Students who arrive and cannot find their host family become stressed and unsure of what to do. Other services are not polished and professional. Many are not properly licensed, nor do not operate enough licensed vehicles to support your business.</p>
                             </div>
                         </div>
                     </div>
@@ -107,14 +54,17 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="s-section-title mb-30">
-                                    <h2>International Cargo</h2>
-                                    <h6>Express delivery is an innovative service</h6>
+                                    <h2>Language Limousine</h2>
+                                    <h6>Professional student transportation services</h6>
                                 </div>
                                 <div class="int-services-content">
-                                    <p>Express delivery is an innovative service is effective logistics solution for the delivery of
-                                        small cargo. This service
-                                        is useful for companies of various effective logistics scale.</p>
-                                    <a href="#" class="btn red-btn">comparison</a>
+                                    <ul style="list-style-type: bullet;">
+                                        <li style="margin-bottom: 15px;">Professional and experienced drivers with proper licensing and background checks</li>
+
+                                        <li style="margin-bottom: 15px;">24/7 airport pickup and drop-off services for international students</li>
+
+                                        <li style="margin-bottom: 15px;">Reliable transportation with modern, well-maintained vehicle fleet</li>
+                                    </ul>                            
                                 </div>
                             </div>
                         </div>
