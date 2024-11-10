@@ -1,3 +1,55 @@
+<?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+ob_start();
+$message = ob_get_clean();
+
+include 'dbcon.php';
+
+$searchValue = $_POST['searchValue'] ?? ''; // Get the search value from the form
+
+// Initialize variables for tracking information
+$trackingInfo = [
+    'waiting' => '',
+    'inCar' => '',
+    'delivered' => ''
+];
+$statusClass = ['waiting' => '', 'inCar' => '', 'delivered' => '', 'successful' => ''];
+$student = null;
+
+if ($searchValue) {
+    // Prepare the SQL query to fetch student data based on student number or name
+    $sql = "SELECT * FROM students 
+            WHERE student_number = :studentNumber 
+            OR student_given_name LIKE :givenName 
+            OR student_family_name LIKE :familyName";
+            
+    $stmt = $pdo->prepare($sql);
+    
+    // Bind parameters separately with unique names
+    $stmt->execute([
+        ':studentNumber' => $searchValue,
+        ':givenName' => "%$searchValue%",
+        ':familyName' => "%$searchValue%"
+    ]);
+
+    $student = $stmt->fetch();
+}
+
+if ($student) {
+    // Fetch tracking information based on time presence in the columns
+    $trackingInfo['waiting'] = $student['waiting_for_student_at_airport'] ?? '';
+    $trackingInfo['inCar'] = $student['student_in_car_to_host'] ?? '';
+    $trackingInfo['delivered'] = $student['student_delivered_to_homestay_home'] ?? '';
+    
+    // Set status classes
+    $statusClass['waiting'] = !empty($trackingInfo['waiting']) ? 'active' : '';
+    $statusClass['inCar'] = !empty($trackingInfo['inCar']) ? 'active' : '';
+    $statusClass['delivered'] = !empty($trackingInfo['delivered']) ? 'active' : '';
+    $statusClass['successful'] = $statusClass['delivered'];
+}
+?>
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -459,41 +511,42 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-10">
                             <div class="tracking-id-info text-center">
-                                <p>Enter Your Cargo Tracking, Door to Door Office <a href="#">Order Number.</a></p>
-                                <form action="#" class="tracking-id-form">
-                                    <input type="text" placeholder="Tracking id">
-                                    <button class="btn red-btn">Tracking</button>
+                                <p>Enter Student Number or Name</p>
+                                <form action="" method="POST" class="tracking-id-form">
+                                    <input type="text" name="searchValue" placeholder="Student Number or Name" value="<?= htmlspecialchars($searchValue) ?>">
+                                    <button type="submit" class="btn red-btn">Submit</button>
                                 </form>
                                 <div class="tracking-list">
                                     <ul>
-                                        <li>
-                                            <div class="tracking-list-icon">
-                                                <i class="flaticon-box"></i>
-                                            </div>
+                                        <li class="<?= $statusClass['waiting'] ?>">
+                                            <div class="tracking-list-icon"><i class="flaticon-box"></i></div>
                                             <div class="tracking-list-content">
-                                                <p>Dispatch</p>
+                                                <p>Waiting</p>
+                                                <?php if ($trackingInfo['waiting']) : ?>
+                                                    <small><?= htmlspecialchars($trackingInfo['waiting']) ?></small>
+                                                    <?php endif; ?>
+                                                </div>
+                                        </li>
+                                        <li class="<?= $statusClass['inCar'] ?>">
+                                            <div class="tracking-list-icon"><i class="flaticon-warehouse"></i></div>
+                                            <div class="tracking-list-content">
+                                                <p>In car</p>
+                                                <?php if ($trackingInfo['inCar']) : ?>
+                                                    <small><?= htmlspecialchars($trackingInfo['inCar']) ?></small>
+                                                <?php endif; ?>
                                             </div>
                                         </li>
-                                        <li class="active">
-                                            <div class="tracking-list-icon">
-                                                <i class="flaticon-warehouse"></i>
-                                            </div>
+                                        <li class="<?= $statusClass['delivered'] ?>">
+                                            <div class="tracking-list-icon"><i class="flaticon-placeholder"></i></div>
                                             <div class="tracking-list-content">
-                                                <p>departed country</p>
+                                                <p>Delivered</p>
+                                                <?php if ($trackingInfo['delivered']) : ?>
+                                                    <small><?= htmlspecialchars($trackingInfo['delivered']) ?></small>
+                                                <?php endif; ?>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="tracking-list-icon">
-                                                <i class="flaticon-placeholder"></i>
-                                            </div>
-                                            <div class="tracking-list-content">
-                                                <p>Destination</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="tracking-list-icon">
-                                                <i class="flaticon-audit"></i>
-                                            </div>
+                                        <li class="<?= $statusClass['successful'] ?>">
+                                            <div class="tracking-list-icon"><i class="flaticon-audit"></i></div>
                                             <div class="tracking-list-content">
                                                 <p>Successful</p>
                                             </div>
