@@ -37,12 +37,6 @@
                     <div class="slider-golve">
                         <img src="img/slider/golve.png" class="rotateme" alt>
                     </div>
-                    <div class="slider-golve-bike">
-                        <img src="img/slider/bike.png" alt>
-                    </div>
-                    <div class="slide-golve-car">
-                        <img src="img/slider/car.png" alt>
-                    </div>
                     <div class="slider-plane">
                         <img src="img/slider/plane.png" alt>
                     </div>
