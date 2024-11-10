@@ -52,7 +52,7 @@
                             <div class="col-lg-3 col-sm-6">
                                 <a href="#" class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-cruise"></i>
+                                        <i class="flaticon-air-freight"></i>
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>Airport<br>Pickup</h5>
@@ -72,7 +72,7 @@
                             <div class="col-lg-3 col-sm-6">
                                 <a href="#" class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-delivery-1"></i>
+                                        <i class="flaticon-air-freight"></i>
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>24/7<br>Support</h5>
@@ -82,7 +82,7 @@
                             <div class="col-lg-3 col-sm-6">
                                 <a href="#" class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-package"></i>
+                                        <i class="flaticon-air-freight"></i>
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>Hostel<br>Drop-off</h5>
