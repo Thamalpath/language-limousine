@@ -490,7 +490,7 @@
                                         <div class="testimonial-avatar">
                                             <div class="testi-avatar-img">
                                                 <img
-                                                    src="img/images/testi_avatar01.jpg"
+                                                    src="img/images/testi_avatar03.jpg"
                                                     alt="img">
                                             </div>
                                             <div class="testi-avatar-info">
