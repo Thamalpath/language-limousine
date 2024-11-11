@@ -107,7 +107,7 @@ if ($student) {
                                         <li class="<?= $statusClass['inCar'] ?>">
                                             <div class="tracking-list-icon"><i class="fa fa-car" aria-hidden="true"></i></div>
                                             <div class="tracking-list-content">
-                                                <p>In car</p>
+                                                <p>Pick Up</p>
                                                 <?php if ($trackingInfo['inCar']) : ?>
                                                     <small><?= htmlspecialchars($trackingInfo['inCar']) ?></small>
                                                 <?php endif; ?>
