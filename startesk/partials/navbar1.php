@@ -4,7 +4,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="logo">
-                                <a href="./"><img src="img/logo/logo.png" class="mobile-logo logo-none" alt="Logo"></a>
+                                <a href="./"><img src="img/logo/6.png" class="mobile-logo logo-none" alt="Logo"></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-6 d-none d-md-block">

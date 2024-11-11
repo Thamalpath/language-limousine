@@ -96,7 +96,7 @@ if ($student) {
                                 <div class="tracking-list">
                                     <ul>
                                         <li class="<?= $statusClass['waiting'] ?>">
-                                            <div class="tracking-list-icon"><i class="flaticon-box"></i></div>
+                                            <div class="tracking-list-icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                             <div class="tracking-list-content">
                                                 <p>Waiting</p>
                                                 <?php if ($trackingInfo['waiting']) : ?>
@@ -105,7 +105,7 @@ if ($student) {
                                                 </div>
                                         </li>
                                         <li class="<?= $statusClass['inCar'] ?>">
-                                            <div class="tracking-list-icon"><i class="flaticon-warehouse"></i></div>
+                                            <div class="tracking-list-icon"><i class="fa fa-car" aria-hidden="true"></i></div>
                                             <div class="tracking-list-content">
                                                 <p>In car</p>
                                                 <?php if ($trackingInfo['inCar']) : ?>

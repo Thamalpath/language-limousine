@@ -37,6 +37,9 @@
                     <div class="slider-golve">
                         <img src="img/slider/golve.png" class="rotateme" alt>
                     </div>
+                    <!-- <div class="slider-golve-bike">
+                        <img src="img/slider/plane2.png" alt>
+                    </div> -->
                     <div class="slider-plane">
                         <img src="img/slider/plane.png" alt>
                     </div>
@@ -468,6 +471,35 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="single-testimonial">
+                                        <div class="testimonial-cat mb-30">
+                                            <h5>
+                                                "Safe, Comfortable, and Convenient"</h5>
+                                            <div class="testimonial-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-content mb-45">
+                                            <p>"Language Limousine truly understands the needs of students. The vehicle was clean, comfortable, and the driver was extremely courteous. This service made my travel so much less stressful. If you’re looking for reliable student transportation, look no further!"</p>
+                                        </div>
+                                        <div class="testimonial-avatar">
+                                            <div class="testi-avatar-img">
+                                                <img
+                                                    src="img/images/testi_avatar01.jpg"
+                                                    alt="img">
+                                            </div>
+                                            <div class="testi-avatar-info">
+                                                <h6>Daniel M</h6>
+                                                <span>Graduate Student</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="single-testimonial">
                                         <div class="testimonial-cat mb-30">
                                             <h5>
