@@ -8,9 +8,10 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in']) {
 }
 
 $driverId = isset($_POST['driverId']) ? $_POST['driverId'] : null;
+$selectedDate = isset($_POST['selectedDate']) ? $_POST['selectedDate'] : null;
 
-if (!$driverId) {
-    echo json_encode(['success' => false, 'message' => 'Driver ID is required']);
+if (!$driverId || !$selectedDate) {
+    echo json_encode(['success' => false, 'message' => 'Driver ID and Date are required']);
     exit();
 }
 
@@ -23,10 +24,15 @@ try {
         School, staff_member_assigned, client, waiting_for_student_at_airport, 
         student_in_car_to_host, student_delivered_to_homestay_home 
         FROM students 
-        WHERE subDriverId = :driverId 
-        ORDER BY Date, actual_arrival_time");
+        WHERE driverId = :driverId 
+        AND Date = :selectedDate
+        ORDER BY actual_arrival_time");
 
-    $stmt->execute(['driverId' => $driverId]);
+    $stmt->execute([
+        'driverId' => $driverId,
+        'selectedDate' => $selectedDate
+    ]);
+    
     $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
