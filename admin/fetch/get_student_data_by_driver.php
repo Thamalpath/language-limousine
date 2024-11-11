@@ -20,7 +20,8 @@ try {
         Flight, DI, M_or_F, student_number, student_given_name, 
         student_family_name, host_given_name, host_family_name, 
         Phone, Address, City, Special_instructions, Study_Permit, 
-        School, staff_member_assigned, client 
+        School, staff_member_assigned, client, waiting_for_student_at_airport, 
+        student_in_car_to_host, student_delivered_to_homestay_home
         FROM students 
         WHERE driverId = :driverId 
         ORDER BY Date, actual_arrival_time");

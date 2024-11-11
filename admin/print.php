@@ -146,8 +146,8 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <th>Address</th>
                                 <th>Client</th>
                                 <th>Waiting</th>
-                                <th>In Car</th>
-                                <th>delivered</th>
+                                <th>Pick Up</th>
+                                <th>Delivered</th>
                             </tr>`;
 
                         // Create table rows from student data
@@ -249,8 +249,8 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <th>Address</th>
                                 <th>Client</th>
                                 <th>Waiting</th>
-                                <th>In Car</th>
-                                <th>delivered</th>
+                                <th>Pick Up</th>
+                                <th>Delivered</th>
                             </tr>`;
 
                         // Create table rows from student data
