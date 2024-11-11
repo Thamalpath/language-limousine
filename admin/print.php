@@ -160,9 +160,9 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <td>${student.host_given_name} - ${student.host_family_name}</td>
                                 <td>${student.Address} , ${student.City}</td>
                                 <td>${student.client}</td>
-                                <td>${student.waiting_for_student_at_airport}</td>
-                                <td>${student.student_in_car_to_host}</td>
-                                <td>${student.student_delivered_to_homestay_home}</td>
+                                <td>${student.waiting_for_student_at_airport || ''}</td>
+                                <td>${student.student_in_car_to_host || ''}</td>
+                                <td>${student.student_delivered_to_homestay_home || ''}</td>
                             </tr>
                         `).join('');
 
@@ -263,9 +263,9 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <td>${student.host_given_name} - ${student.host_family_name}</td>
                                 <td>${student.Address} , ${student.City}</td>
                                 <td>${student.client}</td>
-                                <td>${student.waiting_for_student_at_airport}</td>
-                                <td>${student.student_in_car_to_host}</td>
-                                <td>${student.student_delivered_to_homestay_home}</td>
+                                <td>${student.waiting_for_student_at_airport || ''}</td>
+                                <td>${student.student_in_car_to_host || ''}</td>
+                                <td>${student.student_delivered_to_homestay_home || ''}</td>
                             </tr>
                         `).join('');
 
