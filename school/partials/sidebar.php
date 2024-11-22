@@ -29,7 +29,7 @@
           </li>
           <li>
             <a href="status">
-              <div class="parent-icon"><i class="material-icons-outlined">toggle_onaaa</i>
+              <div class="parent-icon"><i class="material-icons-outlined">toggle_on</i>
               </div>
               <div class="menu-title">Status</div>
             </a>
