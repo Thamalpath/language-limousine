@@ -42,7 +42,9 @@
 						<div class="menu-title">Students</div>
 					</a>
 					<ul>
-						<li> <a href="student"><i class="bx bx-right-arrow-alt"></i>Add</a>
+						<li> <a href="add-student"><i class="bx bx-right-arrow-alt"></i>Add</a>
+						</li>
+						<li> <a href="student"><i class="bx bx-right-arrow-alt"></i>Upload</a>
 						</li>
 						<li> <a href="edit-student"><i class="bx bx-right-arrow-alt"></i>Update</a>
 						</li>
