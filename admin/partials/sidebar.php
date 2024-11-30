@@ -48,6 +48,7 @@
 						</li>
 						<li> <a href="edit-student"><i class="bx bx-right-arrow-alt"></i>Update</a>
 						</li>
+						<li> <a href="download"><i class="bx bx-right-arrow-alt"></i>Download</a>
 						</li>
 					</ul>
 				</li>
