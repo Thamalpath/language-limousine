@@ -1,0 +1,42 @@
+<?php
+session_start();
+include '../config/dbcon.php';
+
+if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in']) {
+    echo json_encode(['success' => false, 'message' => 'Unauthorized access']);
+    exit();
+}
+
+$selectedDate = isset($_POST['selectedDate']) ? $_POST['selectedDate'] : null;
+
+if (!$selectedDate) {
+    echo json_encode(['success' => false, 'message' => 'Date is required']);
+    exit();
+}
+
+try {
+    $stmt = $pdo->prepare("SELECT 
+        s.*, sd.username as subdriver_name
+        FROM students s
+        LEFT JOIN `sub-drivers` sd ON s.driverId = sd.driverId
+        WHERE s.Date = :selectedDate");
+
+    $stmt->execute([
+        'selectedDate' => $selectedDate
+    ]);
+
+    $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode([
+        'success' => true,
+        'students' => $students
+    ]);
+
+} catch (PDOException $e) {
+    error_log("Database Error: " . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database error occurred'
+    ]);
+}
+?>

@@ -89,6 +89,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                                             <label for="subDriverSelect" class="form-label fw-bold font-18">Select Sub Driver</label>
                                                             <select id="subDriverSelect" class="form-select me-2">
                                                                 <option value="">Select Sub-Driver</option>
+                                                                <option value="all">All Sub Drivers</option>
                                                                 <?php foreach ($onduty_subdrivers as $subdriver): ?>
                                                                     <option value="<?php echo $subdriver['driverId']; ?>"><?php echo htmlspecialchars($subdriver['username']); ?></option>
                                                                 <?php endforeach; ?>
@@ -255,12 +256,21 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                     return;
                 }
 
-                fetch('fetch/get_student_data_by_sub_driver.php', {
+                // Determine which endpoint to call based on selection
+                const endpoint = selectedDriverId === 'all' 
+                    ? 'fetch/get_all_subdrivers_student_data.php'
+                    : 'fetch/get_student_data_by_sub_driver.php';
+
+                const formData = selectedDriverId === 'all'
+                    ? `selectedDate=${selectedDate}`
+                    : `driverId=${selectedDriverId}&selectedDate=${selectedDate}`;
+
+                fetch(endpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `driverId=${selectedDriverId}&selectedDate=${selectedDate}`
+                    body: formData
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -270,6 +280,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                         let tableHeaders = `
                             <tr>
                                 <th>#</th>
+                                ${selectedDriverId === 'all' ? '<th>Sub Driver</th>' : ''}
                                 <th>Flight</th>
                                 <th>Student No</th>
                                 <th>Student Name</th>
@@ -284,6 +295,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                         let tableRows = data.students.map((student, index) => `
                             <tr>
                                 <td>${index + 1}</td>
+                                ${selectedDriverId === 'all' ? `<td>${student.subdriver_name || 'Unassigned'}</td>` : ''}
                                 <td>${student.Flight}</td>
                                 <td>${student.student_number}</td>
                                 <td>${student.student_given_name} - ${student.student_family_name}</td>
@@ -295,6 +307,10 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <td>${student.student_delivered_to_homestay_home || ''}</td>
                             </tr>
                         `).join('');
+
+                        let title = selectedDriverId === 'all' 
+                            ? `All Sub Drivers - ${selectedDate}`
+                            : `Sub-Driver: ${selectedSubDriverUsername} - ${selectedDate}`;
 
                         let printContent = `
                             <!DOCTYPE html>
@@ -317,7 +333,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                             <body>
                                 <div class="container">
                                     <h1 class="text-center fw-bold">Transport Report</h1>
-                                    <h3 class="mt-5 mb-4">Sub-Driver: ${selectedSubDriverUsername} - ${selectedDate}</h3>
+                                    <h3 class="mt-5 mb-4">${title}</h3>
                                     <table>
                                         <thead>${tableHeaders}</thead>
                                         <tbody>${tableRows}</tbody>
