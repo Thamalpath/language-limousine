@@ -70,6 +70,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                                             <label for="driverSelect" class="form-label fw-bold font-18">Select Driver</label>
                                                             <select id="driverSelect" class="form-select me-2">
                                                                 <option value="">Select Driver</option>
+                                                                <option value="all">All Drivers</option>
                                                                 <?php foreach ($onduty_drivers as $driver): ?>
                                                                     <option value="<?php echo $driver['driverId']; ?>"><?php echo htmlspecialchars($driver['username']); ?></option>
                                                                 <?php endforeach; ?>
@@ -124,7 +125,6 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
             printDriverBtn.addEventListener('click', function() {
                 const selectedDriverId = document.getElementById('driverSelect').value;
                 const selectedDate = document.getElementById('date').value;
-                const selectedDriverUsername = document.getElementById('driverSelect').options[document.getElementById('driverSelect').selectedIndex].text;
                 
                 if (!selectedDriverId) {
                     notyf.error('Please select a driver');
@@ -135,23 +135,31 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                     return;
                 }
 
-                // Make AJAX call to fetch student data
-                fetch('fetch/get_student_data_by_driver.php', {
+                // Determine which endpoint to call based on selection
+                const endpoint = selectedDriverId === 'all' 
+                    ? 'fetch/get_all_drivers_student_data.php'
+                    : 'fetch/get_student_data_by_driver.php';
+
+                const formData = selectedDriverId === 'all'
+                    ? `selectedDate=${selectedDate}`
+                    : `driverId=${selectedDriverId}&selectedDate=${selectedDate}`;
+
+                fetch(endpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `driverId=${selectedDriverId}&selectedDate=${selectedDate}`
+                    body: formData
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success && data.students.length > 0) {
                         let printWindow = window.open('', '_blank');
                         
-                        // Create table headers based on your student data fields
                         let tableHeaders = `
                             <tr>
                                 <th>#</th>
+                                ${selectedDriverId === 'all' ? '<th>Driver</th>' : ''}
                                 <th>Flight</th>
                                 <th>Student No</th>
                                 <th>Student Name</th>
@@ -163,10 +171,10 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                                 <th>Delivered</th>
                             </tr>`;
 
-                        // Create table rows from student data
                         let tableRows = data.students.map((student, index) => `
                             <tr>
                                 <td>${index + 1}</td>
+                                ${selectedDriverId === 'all' ? `<td>${student.driver_name || 'Unassigned'}</td>` : ''}
                                 <td>${student.Flight}</td>
                                 <td>${student.student_number}</td>
                                 <td>${student.student_given_name} - ${student.student_family_name}</td>
@@ -179,6 +187,12 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                         `).join('');
 
+                        let title = selectedDriverId === 'all' 
+                            ? `All Drivers - ${selectedDate}`
+                            : `Driver: ${document.getElementById('driverSelect').options[document.getElementById('driverSelect').selectedIndex].text} - ${selectedDate}`;
+
+                        // Rest of your existing print window code...
+                        // [Keep your existing printContent template, just update the title]
                         let printContent = `
                             <!DOCTYPE html>
                             <html>
@@ -200,9 +214,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                             <body>
                                 <div class="container">
                                     <h1 class="text-center fw-bold">Transport Report</h1>
-
-                                    <h3 class="mt-5 mb-4">Driver: ${selectedDriverUsername} - ${data.students[0].Date}</h3>
-
+                                    <h3 class="mt-5 mb-4">${title}</h3>
                                     <table>
                                         <thead>${tableHeaders}</thead>
                                         <tbody>${tableRows}</tbody>
@@ -220,7 +232,7 @@ $onduty_subdrivers = $stmt_subdrivers->fetchAll(PDO::FETCH_ASSOC);
                             printWindow.close();
                         };
                     } else {
-                        notyf.error('No student data found for selected date and driver');
+                        notyf.error('No student data found for selected date');
                     }
                 })
                 .catch(error => {
