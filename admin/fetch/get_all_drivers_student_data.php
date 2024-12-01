@@ -19,8 +19,7 @@ try {
         s.*, d.username as driver_name
         FROM students s
         LEFT JOIN drivers d ON s.driverId = d.driverId
-        WHERE s.Date = :selectedDate
-        ORDER BY d.username, s.actual_arrival_time");
+        WHERE s.Date = :selectedDate");
 
     $stmt->execute([
         'selectedDate' => $selectedDate
