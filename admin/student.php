@@ -33,7 +33,7 @@ $failedNames = [];
 
 // If the 'Save' button is clicked, insert the data into the database
 if (isset($_POST['save'])) {
-    $selectedDate = $_POST['date'];  // Retrieve the selected date
+    // $selectedDate = $_POST['date'];  // Retrieve the selected date
     $sheetData = $_POST['data'];
     $schoolID = $_POST['schoolID'] ?? '';     
 
@@ -46,26 +46,44 @@ if (isset($_POST['save'])) {
     foreach ($sheetData as $index => $row) {
         // Skip the first row (headers)
         if ($index == 0) continue;
+    
+        if (empty($row['H'])) {  // Column H is student_number
+            // Get the last auto-increment number for this school
+            $lastStudentNumberQuery = "SELECT student_number FROM students WHERE student_number LIKE 'N/A/$schoolID/%' ORDER BY id DESC LIMIT 1";
+            $lastStudentNumberStmt = $pdo->prepare($lastStudentNumberQuery);
+            $lastStudentNumberStmt->execute();
+            $lastStudentNumberRow = $lastStudentNumberStmt->fetch(PDO::FETCH_ASSOC);
+    
+            $lastAutoIncrement = 0;
+            if ($lastStudentNumberRow) {
+                $lastParts = explode('/', $lastStudentNumberRow['student_number']);
+                $lastAutoIncrement = intval(end($lastParts));
+            }
+    
+            // Generate new student number
+            $lastAutoIncrement++;
+            $row['H'] = "N/A/$schoolID/$lastAutoIncrement";
+        }
 
-        // Assign each row's values
+        $selectedDate = !empty($row['B']) ? date('Y-m-d', strtotime($row['B'])) : '';
         $tripNumber = $row['A'] ?? '';
-        $actualArrivalTime = !empty($row['B']) ? date('H:i:s', strtotime($row['B'])) : '';
-        $arrTimeDepPuTime = !empty($row['C']) ? date('H:i:s', strtotime($row['C'])) : '';
-        $flightNumber = $row['D'] ?? '';
-        $dI = $row['E'] ?? '';
-        $mOrF = $row['F'] ?? '';
-        $studentNumber = $row['G'] ?? '';
-        $studentGivenName = $row['H'] ?? '';
-        $studentFamilyName = $row['I'] ?? '';
-        $hostGivenName = $row['J'] ?? '';
-        $hostFamilyName = $row['K'] ?? '';
-        $phone = $row['L'] ?? '';
-        $address = $row['M'] ?? '';
-        $city = $row['N'] ?? '';
-        $specialInstructions = $row['O'] ?? '';
-        $studyPermit = $row['P'] ?? '';
-        $school = $row['Q'] ?? '';
-        $staffMemberAssigned = $row['R'] ?? '';
+        $actualArrivalTime = !empty($row['C']) ? date('H:i:s', strtotime($row['C'])) : '';
+        $arrTimeDepPuTime = !empty($row['D']) ? date('H:i:s', strtotime($row['D'])) : '';
+        $flightNumber = $row['E'] ?? '';
+        $dI = $row['F'] ?? '';
+        $mOrF = $row['G'] ?? '';
+        $studentNumber = $row['H'] ?? '';
+        $studentGivenName = $row['I'] ?? '';
+        $studentFamilyName = $row['J'] ?? '';
+        $hostGivenName = $row['K'] ?? '';
+        $hostFamilyName = $row['L'] ?? '';
+        $phone = $row['M'] ?? '';
+        $address = $row['N'] ?? '';
+        $city = $row['O'] ?? '';
+        $specialInstructions = $row['P'] ?? '';
+        $studyPermit = $row['Q'] ?? '';
+        $school = $row['R'] ?? '';
+        $staffMemberAssigned = $row['S'] ?? '';
 
         // Execute the query with the current row's data
         if ($stmt->execute([$selectedDate, $tripNumber, $actualArrivalTime, $arrTimeDepPuTime, $flightNumber, $dI, $mOrF, $studentNumber, $studentGivenName, $studentFamilyName, 
@@ -122,13 +140,6 @@ if (isset($_POST['save'])) {
                                                         </div>
                                                         <hr>
                                                         
-                                                        <div class="col-md-4">
-                                                            <label for="date" class="form-label">Select Date</label>
-                                                            <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
-                                                            <div class="invalid-feedback">
-                                                                Please select a date.
-                                                            </div>
-                                                        </div>
                                                         <div class="col-md-4">
                                                             <label for="schoolID" class="form-label">School Name</label>
                                                             <select class="form-select" name="schoolID" id="schoolID" required>
@@ -201,15 +212,10 @@ if (isset($_POST['save'])) {
                                                     $spreadsheet = IOFactory::load($file);
                                                     $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
 
-                                                    // Store the selected date
-                                                    $selectedDate = $_POST['date'];
-
                                                     // Display the data in a table format with hidden inputs
                                                     echo "<form method='post' action=''>";
-                                                    echo "<input type='hidden' name='date' value='" . htmlspecialchars($selectedDate, ENT_QUOTES) . "'>";
                                                     echo "<input type='hidden' name='schoolID' value='" . htmlspecialchars($_POST['selected_school_id'], ENT_QUOTES) . "'>";
-                                                    
-                                                    echo "<input type='hidden' name='date' value='" . htmlspecialchars($selectedDate, ENT_QUOTES) . "'>";  // Pass the selected date to the next form
+                                                      // Pass the selected date to the next form
                                                     echo "<div class='col-md-12 text-center g-3 mt-5'>
                                                             <div class='d-flex justify-content-start mb-4 gap-3 flex-wrap'>
                                                                 <button type='submit' name='save' value='save' class='btn btn-gradient-info fw-bold px-5'>Save</button>
@@ -218,6 +224,7 @@ if (isset($_POST['save'])) {
                                                     echo "<table id='example' class='table table-striped table-bordered' style='width:100%'>";
                                                     echo "<thead>";
                                                     echo "<tr>
+                                                            <th>Date</th>
                                                             <th>Trip</th>
                                                             <th>Actual Arrival Time</th>            
                                                             <th>Arr Time Dep PU Time</th>
