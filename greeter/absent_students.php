@@ -3,8 +3,10 @@ declare(strict_types=1);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
+ob_start();
 session_start();
+$message = ob_get_clean();
+date_default_timezone_set('America/Vancouver');
 
 require_once 'config/dbcon.php';
 
