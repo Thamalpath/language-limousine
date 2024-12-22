@@ -44,6 +44,8 @@
 					<ul>
 						<li> <a href="add-student"><i class="bx bx-right-arrow-alt"></i>Add</a>
 						</li>
+						<li> <a href="view-student"><i class="bx bx-right-arrow-alt"></i>View</a>
+						</li>
 						<li> <a href="student"><i class="bx bx-right-arrow-alt"></i>Upload</a>
 						</li>
 						<li> <a href="edit-student"><i class="bx bx-right-arrow-alt"></i>Update</a>
