@@ -143,73 +143,80 @@ function displayStudents($pdo) {
 <?php include 'partials/header.php';?>
 <link rel="stylesheet" href="assets/css/style.css" />
 
-	<!--wrapper-->
-	<div class="wrapper">
+<!--wrapper-->
+<div class="wrapper">
 
-		<!--sidebar wrapper -->
-		<?php include 'partials/sidebar.php';?>
-		<!--end sidebar wrapper -->
+<!--sidebar wrapper -->
+<?php include 'partials/sidebar.php';?>
+<!--end sidebar wrapper -->
 
-		<!--start header -->
-		<header>
-			<div class="topbar d-flex align-items-center">
-				<?php include 'partials/navbar.php';?>
-			</div>
-		</header>
-		<!--end header -->
+<!--start header -->
+<header>
+    <div class="topbar d-flex align-items-center">
+        <?php include 'partials/navbar.php';?>
+    </div>
+</header>
+<!--end header -->
 		
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
+            <div class="page-content">
 
                 <div class="row row-cols-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12">
-					<div class="col mt-4">
+                    <div class="col mt-4">
                         <div class="card">
                             <div class="card-body">
-                                                    <form method="POST" class="row g-3">
-                                                        <div class="col-md-3">
-                                                            <label for="driverId" class="form-label fw-bold fs-6">Select Driver</label>
-                                                            <select class="form-select" name="driverId" id="driverId">
-                                                                <option value="">-- Select Driver --</option>
-                                                                <?php echo fetchDrivers($pdo); ?>
-                                                            </select>
+                                <div class="tab-content py-3">
+                                    <div class="row">
+                                        <div class="col-xl-12 mx-auto">
+                                            <div class="card border-top border-0 border-4 border-primary">
+                                                <div class="card-body p-5">
+                                                            <form method="POST" class="row g-3">
+                                                                <div class="col-md-3">
+                                                                    <label for="driverId" class="form-label fw-bold fs-6">Select Driver</label>
+                                                                    <select class="form-select" name="driverId" id="driverId">
+                                                                        <option value="">-- Select Driver --</option>
+                                                                        <?php echo fetchDrivers($pdo); ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label for="subDriverId" class="form-label fw-bold fs-6">Select Sub Driver</label>
+                                                                    <select class="form-select" name="subDriverId" id="subDriverId">
+                                                                        <option value="">-- Select Sub Driver --</option>
+                                                                        <?php echo fetchsubDrivers($pdo); ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3 mb-4 pt-2">
+                                                                    <label for="assign" class="form-label">&nbsp;</label>
+                                                                    <button type="submit" name="assign" class="btn btn-gradient-info fw-bold px-5 mt-4">Assign</button>
+                                                                </div>
+                                                                <div class="table-responsive">
+                                                                    <table id="assignDriver" class="table table-striped table-bordered" style="width:100%">
+                                                                        <!-- Table headers remain the same -->
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Pick</th>
+                                                                                <th>ID</th>
+                                                                                <th>Arrival Time</th>
+                                                                                <th>Flight</th>
+                                                                                <th>D or I</th>
+                                                                                <th>Student Number</th>
+                                                                                <th>Student Given Name</th>
+                                                                                <th>Host Given Name</th>
+                                                                                <th>Phone Numbers</th>
+                                                                                <th>Address</th>
+                                                                                <th>City</th>
+                                                                                <th>School</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php echo displayStudents($pdo); ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <label for="subDriverId" class="form-label fw-bold fs-6">Select Sub Driver</label>
-                                                            <select class="form-select" name="subDriverId" id="subDriverId">
-                                                                <option value="">-- Select Sub Driver --</option>
-                                                                <?php echo fetchsubDrivers($pdo); ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-3 mb-4 pt-2">
-                                                            <label for="assign" class="form-label">&nbsp;</label>
-                                                            <button type="submit" name="assign" class="btn btn-gradient-info fw-bold px-5 mt-4">Assign</button>
-                                                        </div>
-                                                        <div class="table-responsive">
-                                                            <table id="assignDriver" class="table table-striped table-bordered" style="width:100%">
-                                                                <!-- Table headers remain the same -->
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Pick</th>
-                                                                        <th>ID</th>
-                                                                        <th>Arrival Time</th>
-                                                                        <th>Flight</th>
-                                                                        <th>D or I</th>
-                                                                        <th>Student Number</th>
-                                                                        <th>Student Given Name</th>
-                                                                        <th>Host Given Name</th>
-                                                                        <th>Phone Numbers</th>
-                                                                        <th>Address</th>
-                                                                        <th>City</th>
-                                                                        <th>School</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php echo displayStudents($pdo); ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,17 +226,19 @@ function displayStudents($pdo) {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-        <?php include 'partials/endarea.php';?>
-	</div>
+<?php include 'partials/footer.php'; ?>
 
-	<?php include 'partials/footer.php';?>
     <script>
-    $(document).ready(function() {
-        $('#assignDriver').DataTable({
-            pageLength: 100,
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            order: [[1, 'asc']],
+        $(document).ready(function() {
+            $('#assignDriver').DataTable({
+                pageLength: 100,
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                order: [[1, 'asc']],
+            });
         });
-    });
-</script>
+    </script>
