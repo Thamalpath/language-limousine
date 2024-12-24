@@ -32,6 +32,10 @@ if (isset($_POST['update_in_car'])) {
     } else {
         $_SESSION['error'] = "Failed to update in-car time for student ID: $student_id.";
     }
+
+    // Redirect to avoid form resubmission
+    header("Location: dashboard");
+    exit();
 }
 
 
@@ -54,7 +58,7 @@ if (isset($_POST['deliver'])) {
     }
 
     // Redirect to avoid form resubmission
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: dashboard");
     exit();
 }
 
