@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       for ($row = 2; $row <= $highestRow; $row++) {
 
           $dateValue = $sheet->getCell("B{$row}")->getFormattedValue();
-          $dateObject = DateTime::createFromFormat('d.m.Y', $dateValue);
+          $dateObject = DateTime::createFromFormat('Y-m-d', $dateValue);
           $formattedDate = $dateObject ? $dateObject->format('Y-m-d') : null;
 
           // Get all cell values
