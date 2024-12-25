@@ -30,8 +30,9 @@ function assignDrivers($pdo) {
     $driver_id = !empty($_POST['driverId']) ? $_POST['driverId'] : $_POST['subDriverId'];
 
     if (!$driver_id) {
-        error_log('Driver ID is invalid or not set.');
-        return 'failure';
+        $_SESSION['error'] = "Driver ID is invalid or not set.";
+        header("Location: dashboard");
+        exit();
     }
 
     $selected_ids = $_POST['selected_row'] ?? [];
@@ -47,19 +48,26 @@ function assignDrivers($pdo) {
             $stmt = $pdo->prepare($update_query);
             $params = array_merge([$driver_id], $selected_ids);
             if ($stmt->execute($params)) {
-                return 'success';
+                $_SESSION['success'] = "Drivers assigned successfully!";
+                header("Location: dashboard");
+                exit();
             } else {
-                error_log('Failed to execute the driver assignment query.');
-                return 'failure';
+                $_SESSION['error'] = "Failed to execute the driver assignment query.";
+                header("Location: dashboard");
+                exit();
             }
         } catch (PDOException $e) {
-            error_log('PDOException: ' . $e->getMessage());
-            return 'failure';
-        }
+            $_SESSION['error'] = "Error: PDOException: " . $e->getMessage();
+            header("Location: dashboard");
+            exit();        }
     } else {
-        error_log('Empty selected IDs or invalid driver ID.');
+        $_SESSION['error'] = "Empty selected IDs or invalid driver ID.";
+        header("Location: dashboard");
+        exit();
     }
-    return 'failure';
+    $_SESSION['error'] = "Failed to assign drivers. Please try again.";
+    header("Location: dashboard");
+    exit();
 }
 
 
@@ -176,7 +184,7 @@ function displayStudents($pdo) {
                                                     <button type="submit" name="assign" class="btn btn-grd btn-grd-info px-5 fw-bold mt-4">Assign</button>
                                                 </div>
                                                 <div class="table-responsive">
-                                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                    <table id="assignDriver" class="table table-striped table-bordered" style="width:100%">
                                                         <!-- Table headers remain the same -->
                                                         <thead>
                                                             <tr>
@@ -215,22 +223,11 @@ function displayStudents($pdo) {
 <?php include 'partials/footer.php'; ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var assignmentStatus = "<?php echo $assignmentStatus; ?>";
-        if (assignmentStatus === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Drivers assigned successfully!',
-                confirmButtonText: 'OK'
-            });
-        } else if (assignmentStatus === 'failure') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Failed to assign drivers. Please try again.',
-                confirmButtonText: 'OK'
-            });
-        }
+    $(document).ready(function() {
+        $('#assignDriver').DataTable({
+            pageLength: 100,
+            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            order: [[1, 'asc']],
+        });
     });
 </script>
