@@ -18,6 +18,7 @@ if (!isset($_SESSION['signed_in']) || !$_SESSION['signed_in'] || $_SESSION['role
 if (isset($_POST['update_time'])) {
     $student_id = $_POST['student_id'];
     $current_time = date('H:i:s');
+    $page_number = $_POST['page_number']; // Add this hidden input in your form
 
     // Update query to set the current time
     $update_query = "UPDATE students SET waiting_for_student_at_airport = :waiting_time WHERE ID = :student_id";
@@ -26,13 +27,13 @@ if (isset($_POST['update_time'])) {
     $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        $_SESSION['success_message'] = "Time updated for student ID: $student_id.";
+        // Success case - no message
     } else {
-        $_SESSION['error_message'] = "Failed to update time for student ID: $student_id.";
+        $_SESSION['error'] = "Failed to update time for student ID: $student_id.";
     }
 
-    // Redirect to the same page to avoid form resubmission
-    header("Location: " . $_SERVER['PHP_SELF']);
+    // Redirect with page number
+    header("Location: time?page=" . $page_number);
     exit();
 }
 
@@ -54,6 +55,7 @@ function displayStudents($pdo) {
                         <td>
                             <form method='POST'>
                                 <input type='hidden' name='student_id' value='{$row['ID']}'>
+                                <input type='hidden' name='page_number' class='dt-page-number'>
                                 <input type='submit' name='update_time' value='$time_button' class='btn btn-primary'>
                             </form>
                         </td>
@@ -92,7 +94,7 @@ function displayStudents($pdo) {
                                     <div class="card">
                                         <div class="card-body p-4">
                                             <div class="table-responsive">
-                                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                <table id="timeTable" class="table table-striped table-bordered" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th>Waiting</th>
@@ -121,4 +123,25 @@ function displayStudents($pdo) {
 </main>
 
 <?php include 'partials/footer.php'; ?>
+
+<script>
+    $(document).ready(function() {
+        var table = $('#timeTable').DataTable({
+            stateSave: true,
+            stateDuration: -1,
+            pageLength: 10,
+            "initComplete": function(settings, json) {
+                var pageNum = new URLSearchParams(window.location.search).get('page');
+                if (pageNum) {
+                    table.page(parseInt(pageNum)).draw('page');
+                }
+            }
+        });
+
+        $('form').on('submit', function() {
+            var currentPage = table.page();
+            $(this).find('.dt-page-number').val(currentPage);
+        });
+    });
+</script>
 
