@@ -87,6 +87,7 @@ function displayStudents($pdo) {
                     $row['student_in_car_to_host'] : 'Pick Up';
 
                 $rows .= "<tr style='text-align:center'>
+                    <td>{$row['ID']}</td>
                     <td>
                         <form method='POST'>
                             <input type='hidden' name='student_id' value='{$row['ID']}'>
@@ -103,11 +104,10 @@ function displayStudents($pdo) {
                             </button>
                         </form>
                     </td>
-                    <td>{$row['student_number']}</td>
-                    <td>{$row['student_given_name']}</td>
-                    <td>{$row['ID']}</td>
-                    <td>{$row['arr_time_dep_pu_time']}</td>
                     <td>{$row['Flight']}</td>
+                    <td>{$row['arr_time_dep_pu_time']}</td>
+                    <td>{$row['student_number']}</td>
+                    <td>{$row['student_given_name']}</td>  
                 </tr>";
             }
             return $rows;
@@ -149,15 +149,15 @@ function displayStudents($pdo) {
                                             <div class="table-responsive">
                                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                                     <thead>
-                                                        <tr>
-                                                            <th>Pick Up</th>
-                                                            <th>Delivered</th>
-                                                            <th>Student Number</th>
-                                                            <th>Student Given Name</th>
-                                                            <th>ID</th>
-                                                            <th>Arrival Time</th>
-                                                            <th>Flight</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Pick Up</th>
+                                                        <th>Delivered</th>
+                                                        <th>Flight</th>
+                                                        <th>Arrival Time</th>
+                                                        <th>Student Number</th>
+                                                        <th>Student Given Name</th>
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php echo displayStudents($pdo); ?>
