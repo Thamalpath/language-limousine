@@ -33,7 +33,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
-		  } );
+		} );
 	</script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.3/dist/sweetalert2.all.min.js"></script>
