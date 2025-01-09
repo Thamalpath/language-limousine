@@ -176,6 +176,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                         </div>
                       </form>
                       <?php if(isset($_SESSION['preview_data']) && !empty($_SESSION['preview_data'])): ?>
+                        <?php
+                        $exceeding_students = array_filter($_SESSION['preview_data'], function($row) {
+                            return $row['isWithin72Hours'];
+                        });
+                        
+                        if (!empty($exceeding_students)): ?>
+                            <div class="alert alert-warning mt-4" role="alert">
+                                <h4 class="alert-heading">Time Restriction Warning!</h4>
+                                <p>The following students exceed the 72 hours restriction:</p>
+                                <ul>
+                                    <?php foreach ($exceeding_students as $student): ?>
+                                        <li>
+                                            <?php echo htmlspecialchars($student['studentGivenName'] . ' ' . $student['studentFamilyName']); ?> 
+                                            (<?php echo htmlspecialchars($student['studentNumber']); ?>)
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <hr>
+                                <p class="mb-0">Please contact the admin via WhatsApp: <strong>+17 7-773-5466</strong></p>
+                            </div>
+                        <?php endif; ?>
                         <h2 class="mt-5">Preview Records</h2>
                         <form method="POST">
                             <div class="table-responsive">
