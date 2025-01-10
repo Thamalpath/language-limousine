@@ -125,15 +125,27 @@ if (isset($_POST['confirm_upload'])) {
       }
           // Insert new record
           $stmtInsert->execute([
-              $record['date'], $record['tripNumber'], $actualArrivalTime, 
-              $arrTimeDepPuTime, $record['flightNumber'], 
-              $record['dI'], $record['mOrF'], $record['studentNumber'], 
-              $record['studentGivenName'], $record['studentFamilyName'], 
-              $record['hostGivenName'], $record['hostFamilyName'], 
-              $record['phone'], $record['address'], $record['city'], 
-              $record['specialInstructions'], $record['studyPermit'], 
-              $record['school'], $record['staffMemberAssigned'], $schoolId
-          ]);
+            $record['date'],
+            $record['tripNumber'],
+            $actualArrivalTime, 
+            $arrTimeDepPuTime,
+            $record['flightNumber'],
+            $record['dI'],
+            $record['mOrF'], 
+            $record['studentNumber'],
+            $record['studentGivenName'],
+            $record['studentFamilyName'],
+            $record['hostGivenName'], 
+            $record['hostFamilyName'],
+            $record['phone'],
+            $record['address'],
+            $record['city'],
+            $record['specialInstructions'],
+            $record['studyPermit'],
+            $record['school'],
+            $record['staffMemberAssigned'],
+            $schoolId
+        ]);
       
   }
   unset($_SESSION['preview_data']);
