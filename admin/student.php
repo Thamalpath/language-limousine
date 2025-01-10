@@ -68,8 +68,8 @@ if (isset($_POST['save'])) {
 
         $selectedDate = !empty($row['B']) ? date('Y-m-d', strtotime($row['B'])) : '';
         $tripNumber = $row['A'] ?? '';
-        $actualArrivalTime = !empty($row['C']) ? date('H:i:s', strtotime($row['C'])) : '';
-        $arrTimeDepPuTime = !empty($row['D']) ? date('H:i:s', strtotime($row['D'])) : '';
+$actualArrivalTime = !empty($row['C']) ? date('H:i:s', strtotime($row['C'])) : null;
+$arrTimeDepPuTime = !empty($row['D']) ? date('H:i:s', strtotime($row['D'])) : null;
         $flightNumber = $row['E'] ?? '';
         $dI = $row['F'] ?? '';
         $mOrF = $row['G'] ?? '';
@@ -211,7 +211,9 @@ if (isset($_POST['save'])) {
                                                 // Load the spreadsheet file
                                                 try {
                                                     $spreadsheet = IOFactory::load($file);
-                                                    $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+                                                    $worksheet = $spreadsheet->getActiveSheet();
+                                                    $range = 'A2:S' . $worksheet->getHighestRow();
+                                                    $sheetData = $worksheet->rangeToArray($range, null, true, true, true);
 
                                                     // Display the data in a table format with hidden inputs
                                                     echo "<form method='post' action=''>";
@@ -225,8 +227,8 @@ if (isset($_POST['save'])) {
                                                     echo "<table id='example' class='table table-striped table-bordered' style='width:100%'>";
                                                     echo "<thead>";
                                                     echo "<tr>
-                                                            <th>Date</th>
                                                             <th>Trip</th>
+                                                            <th>Date</th>
                                                             <th>Actual Arrival Time</th>            
                                                             <th>Arr Time Dep PU Time</th>
                                                             <th>Flight</th>
@@ -255,8 +257,8 @@ if (isset($_POST['save'])) {
                                                         if (array_filter($row)) {  // array_filter removes empty values, so this checks if the row has any data
                                                             echo "<tr>";
                                                             foreach ($row as $key => $cell) {
-                                                                echo "<td>" . htmlspecialchars($cell, ENT_QUOTES) . "</td>";
-                                                                echo "<input type='hidden' name='data[$index][$key]' value='" . htmlspecialchars($cell, ENT_QUOTES) . "'>";
+                                                                echo "<td>" . htmlspecialchars($cell ?? '', ENT_QUOTES) . "</td>";
+                                                                echo "<input type='hidden' name='data[$index][$key]' value='" . htmlspecialchars($cell ?? '', ENT_QUOTES) . "'>";
                                                             }
                                                             echo "</tr>";
                                                         }
