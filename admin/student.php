@@ -222,11 +222,11 @@ if (isset($_POST['save'])) {
                                                                 <button type='submit' name='save' value='save' class='btn btn-gradient-info fw-bold px-5'>Save</button>
                                                             </div>
                                                         </div>";
-                                                    echo "<table id='example' class='table table-striped table-bordered' style='width:100%'>";
+                                                    echo "<table class='table table-striped table-bordered' style='width:100%'>";
                                                     echo "<thead>";
                                                     echo "<tr>
-                                                            <th>Date</th>
                                                             <th>Trip</th>
+                                                            <th>Date</th>
                                                             <th>Actual Arrival Time</th>            
                                                             <th>Arr Time Dep PU Time</th>
                                                             <th>Flight</th>
