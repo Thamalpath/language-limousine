@@ -108,25 +108,19 @@ if (isset($_POST['confirm_upload'])) {
       if ($record['isWithin72Hours']) {
           continue;
       }
-      $actualArrivalTime = null;
-      if (!empty($record['actualArrivalTime'])) {
-          // Convert to proper time format
-          $timeObj = DateTime::createFromFormat('H:i:s', $record['actualArrivalTime']);
-          if ($timeObj) {
-              $actualArrivalTime = $timeObj->format('H:i:s');
-          }
-      }
+      $actualArrivalTime = !empty($record['actualArrivalTime']) ? $record['actualArrivalTime'] : null;
       $arrTimeDepPuTime = null;
       if (!empty($record['arrTimeDepPuTime'])) {
           $timeObj = DateTime::createFromFormat('g:i A', $record['arrTimeDepPuTime']);
           if ($timeObj) {
-              $arrTimeDepPuTime = $timeObj->format('H:i:s');
+              $arrTimeDepPuTime = $timeObj->format('H:i:s'); // Converts to 24-hour format
           }
       }
+      // var_dump($record);
           // Insert new record
           $stmtInsert->execute([
             $record['date'],
-            $record['tripNumber'],
+            (string)$record['tripNumber'],
             $actualArrivalTime, 
             $arrTimeDepPuTime,
             $record['flightNumber'],
@@ -140,7 +134,7 @@ if (isset($_POST['confirm_upload'])) {
             $record['phone'],
             $record['address'],
             $record['city'],
-            $record['specialInstructions'],
+            !empty($record['specialInstructions']) ? $record['specialInstructions'] : null,
             $record['studyPermit'],
             $record['school'],
             $record['staffMemberAssigned'],
@@ -248,6 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                                             <td><?= htmlspecialchars($row['studentNumber']) ?></td>
                                             <td><?= htmlspecialchars($row['hostGivenName'] . ' ' . $row['hostFamilyName']) ?></td>
                                             <td><?= htmlspecialchars($row['city']) ?></td>
+                                            <td><?= htmlspecialchars($row['studyPermit']) ?></td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
