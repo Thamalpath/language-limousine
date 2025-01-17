@@ -108,18 +108,44 @@ if (isset($_POST['confirm_upload'])) {
       if ($record['isWithin72Hours']) {
           continue;
       }
-
+      $actualArrivalTime = null;
+      if (!empty($record['actualArrivalTime'])) {
+          // Convert to proper time format
+          $timeObj = DateTime::createFromFormat('H:i:s', $record['actualArrivalTime']);
+          if ($timeObj) {
+              $actualArrivalTime = $timeObj->format('H:i:s');
+          }
+      }
+      $arrTimeDepPuTime = null;
+      if (!empty($record['arrTimeDepPuTime'])) {
+          $timeObj = DateTime::createFromFormat('g:i A', $record['arrTimeDepPuTime']);
+          if ($timeObj) {
+              $arrTimeDepPuTime = $timeObj->format('H:i:s');
+          }
+      }
           // Insert new record
           $stmtInsert->execute([
-              $record['date'], $record['tripNumber'], $record['actualArrivalTime'], 
-              $record['arrTimeDepPuTime'], $record['flightNumber'], 
-              $record['dI'], $record['mOrF'], $record['studentNumber'], 
-              $record['studentGivenName'], $record['studentFamilyName'], 
-              $record['hostGivenName'], $record['hostFamilyName'], 
-              $record['phone'], $record['address'], $record['city'], 
-              $record['specialInstructions'], $record['studyPermit'], 
-              $record['school'], $record['staffMemberAssigned'], $schoolId
-          ]);
+            $record['date'],
+            $record['tripNumber'],
+            $actualArrivalTime, 
+            $arrTimeDepPuTime,
+            $record['flightNumber'],
+            $record['dI'],
+            $record['mOrF'], 
+            $record['studentNumber'],
+            $record['studentGivenName'],
+            $record['studentFamilyName'],
+            $record['hostGivenName'], 
+            $record['hostFamilyName'],
+            $record['phone'],
+            $record['address'],
+            $record['city'],
+            $record['specialInstructions'],
+            $record['studyPermit'],
+            $record['school'],
+            $record['staffMemberAssigned'],
+            $schoolId
+        ]);
       
   }
   unset($_SESSION['preview_data']);
