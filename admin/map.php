@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $student_number = $_POST['number'];
 
     try {
-        $sql = "SELECT Trip,address, city, student_given_name, student_family_name, host_given_name, host_family_name,client
+        $sql = "SELECT ID, Trip,address, city, student_given_name, student_family_name, host_given_name, host_family_name,client
                 FROM students WHERE student_number = :student_number";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':student_number', $student_number, PDO::PARAM_STR);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $trip = $row["Trip"];
+            $ID = $row["ID"];
             $address = $row["address"];
             $city = $row["city"];
             $student_given_name = $row["student_given_name"];
@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
                                         <div class="print-content">
                                             <h1>Student Map</h1>
                                             <div style="margin-bottom: 50px;">
-                                                <strong>ID :</strong><?php echo $trip ?><br><br>
+                                                <strong>ID :</strong><?php echo $ID ?><br><br>
                                                 <strong>Student Name:</strong> <?php echo $student_given_name . ' ' . $student_family_name; ?><br><br>
                                                 <strong>Host Name:</strong> <?php echo $host_given_name . ' ' . $host_family_name; ?><br><br>
                                                 <strong>Address:</strong> <?php echo $address; ?><br><br>
