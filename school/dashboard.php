@@ -108,18 +108,38 @@ if (isset($_POST['confirm_upload'])) {
       if ($record['isWithin72Hours']) {
           continue;
       }
-
+      $actualArrivalTime = !empty($record['actualArrivalTime']) ? $record['actualArrivalTime'] : null;
+      $arrTimeDepPuTime = null;
+      if (!empty($record['arrTimeDepPuTime'])) {
+          $timeObj = DateTime::createFromFormat('g:i A', $record['arrTimeDepPuTime']);
+          if ($timeObj) {
+              $arrTimeDepPuTime = $timeObj->format('H:i:s'); // Converts to 24-hour format
+          }
+      }
+      // var_dump($record);
           // Insert new record
           $stmtInsert->execute([
-              $record['date'], $record['tripNumber'], $record['actualArrivalTime'], 
-              $record['arrTimeDepPuTime'], $record['flightNumber'], 
-              $record['dI'], $record['mOrF'], $record['studentNumber'], 
-              $record['studentGivenName'], $record['studentFamilyName'], 
-              $record['hostGivenName'], $record['hostFamilyName'], 
-              $record['phone'], $record['address'], $record['city'], 
-              $record['specialInstructions'], $record['studyPermit'], 
-              $record['school'], $record['staffMemberAssigned'], $schoolId
-          ]);
+            $record['date'],
+            (string)$record['tripNumber'],
+            $actualArrivalTime, 
+            $arrTimeDepPuTime,
+            $record['flightNumber'],
+            $record['dI'],
+            $record['mOrF'], 
+            $record['studentNumber'],
+            $record['studentGivenName'],
+            $record['studentFamilyName'],
+            $record['hostGivenName'], 
+            $record['hostFamilyName'],
+            $record['phone'],
+            $record['address'],
+            $record['city'],
+            !empty($record['specialInstructions']) ? $record['specialInstructions'] : null,
+            $record['studyPermit'],
+            $record['school'],
+            $record['staffMemberAssigned'],
+            $schoolId
+        ]);
       
   }
   unset($_SESSION['preview_data']);
@@ -222,6 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                                             <td><?= htmlspecialchars($row['studentNumber']) ?></td>
                                             <td><?= htmlspecialchars($row['hostGivenName'] . ' ' . $row['hostFamilyName']) ?></td>
                                             <td><?= htmlspecialchars($row['city']) ?></td>
+                                            <td><?= htmlspecialchars($row['studyPermit']) ?></td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
