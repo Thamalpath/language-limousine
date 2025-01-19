@@ -349,7 +349,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_id'])) {
                                                         </td>
                                                         <td><?php echo htmlspecialchars($student['Date']); ?></td>
                                                         <td><?php echo htmlspecialchars($student['Trip']); ?></td>
-                                                        <td><?php echo htmlspecialchars($student['actual_arrival_time']); ?></td>
+                                                        <td><?php echo htmlspecialchars($student['actual_arrival_time'] ?? ''); ?></td>
                                                         <td><?php echo htmlspecialchars($student['arr_time_dep_pu_time']); ?></td>
                                                         <td><?php echo htmlspecialchars($student['Flight']); ?></td>
                                                         <td><?php echo htmlspecialchars($student['DI']); ?></td>
