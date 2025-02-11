@@ -118,7 +118,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                             <td><?php echo htmlspecialchars($student['host_family_name']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['Phone']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['Address']); ?></td>
-                                                            <td><?php echo htmlspecialchars($student['City']); ?></td>
+                                                            <td><?php 
+                                                                $city = strtolower(trim($student['City']));
+                                                                $cityColor = '';
+                                                                
+                                                                switch($city) {
+                                                                    case 'vancouver':
+                                                                        $cityColor = 'background-color: #90EE90'; // green
+                                                                        break;
+                                                                    case 'new westminster':
+                                                                        $cityColor = 'background-color: #ADD8E6'; // light blue
+                                                                        break;
+                                                                    case 'burnaby':
+                                                                        $cityColor = 'background-color: #FFA500'; // orange
+                                                                        break;
+                                                                    case 'port moody':
+                                                                        $cityColor = 'background-color: #DDA0DD'; // purple
+                                                                        break;
+                                                                    case 'richmond':
+                                                                        $cityColor = 'background-color: #D3D3D3'; // grey
+                                                                        break;
+                                                                        case 'surrey':
+                                                                            $cityColor = 'background-color: #FF0000'; // red
+                                                                        break;
+                                                                    case 'west vancouver':
+                                                                        $cityColor = 'background-color: #fa0ecc'; // grey
+                                                                    break;
+                                                                    case 'north vancouver':
+                                                                        $cityColor = 'background-color: #0e0efa'; // grey
+                                                                    break;
+                                                                }
+                                                                echo "<span style='{$cityColor}; color: black;'>" . htmlspecialchars($student['City']) . "</span>";
+                                                            ?></td>
                                                             <td><?php echo htmlspecialchars($student['School']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['client']); ?></td>
                                                         </tr>
