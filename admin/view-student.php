@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                         <?php foreach ($students as $student): ?>
                                                         <tr>
                                                             <td><?php echo htmlspecialchars($student['Trip']); ?></td>
-                                                            <td><?php echo htmlspecialchars($student['actual_arrival_time']); ?></td>
+                                                            <td><?php echo htmlspecialchars($student['actual_arrival_time'] ?? ''); ?></td>
                                                             <td><?php echo htmlspecialchars($student['arr_time_dep_pu_time']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['Flight']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['DI']); ?></td>
