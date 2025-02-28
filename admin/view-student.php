@@ -100,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                         <th>City</th>
                                                         <th>School</th>
                                                         <th>Client</th>
+                                                        <th>Assigned Driver</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -161,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                             ?></td>
                                                             <td><?php echo htmlspecialchars($student['School']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['client']); ?></td>
+                                                            <td><?php echo htmlspecialchars($student['driverId']); ?></td>
                                                         </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
