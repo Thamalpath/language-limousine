@@ -22,7 +22,7 @@
                                             </li>
                                             <li><a href="about-us">About Us</a></li>
                                             <li><a href="tracking">Tracking</a></li>
-                                            <li><a href="services">Services</a></li>
+                                            <li><a href="policies">Services</a></li>
                                         </ul>
                                     </nav>
                                 </div>
