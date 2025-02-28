@@ -54,7 +54,7 @@ if ($student) {
 <?php include 'partials/header1.php';?>
 
         <!-- header-start -->
-        <?php include 'partials/navbar2.php';?>
+        <?php include 'partials/navbar1.php';?>
         <!-- header-start-end -->
 
         <!-- main-area -->
