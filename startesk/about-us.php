@@ -36,7 +36,7 @@
                         <div class="col-xl-7 col-lg-10">
                             <div class="s-section-title text-center mb-60">
                                 <h2>Language Limousine</h2>
-                                <p>Language Limousine staff are at the airport every day. We have come to know the airport and our experience enables us to locate students much easier than anyone else. Finding a student at the airport can be a very difficult task. Students who arrive and cannot find their host family become stressed and unsure of what to do. Other services are not polished and professional. Many are not properly licensed, nor do not operate enough licensed vehicles to support your business.</p>
+                                <p>Operating since 2003, Language Limousine has made every effort to take care of students travelling abroad. From start to finish, our staff are there to make sure they have arrived safely, collected all their baggage, and made it all the way to their new residence. The same great experience can be expected once it is time to return home.</p>
                             </div>
                         </div>
                     </div>
@@ -59,11 +59,11 @@
                                 </div>
                                 <div class="int-services-content">
                                     <ul style="list-style-type: bullet;">
-                                        <li style="margin-bottom: 15px; font-weight: bold;">Licensed Vehicles – <span style="font-weight: normal;">We at Language Limousine have plenty of licensed vehicles. We have developed strategies to maximize the probability of meeting your student and thereby ensuring them a great welcome to Canada.</span></li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">Licensed Vehicles – <span style="font-weight: normal;">We at Language Limousine have a variety of licensed vehicles. We have developed strategies to maximize the probability of meeting your student and thereby ensuring them a great welcome to Canada.</span></li>
 
-                                        <li style="margin-bottom: 15px; font-weight: bold;">Live Tracking – <span style="font-weight: normal;">No other company offers a “live” website that allows you, your agents, host families, and the students’ parents real time information regarding the students status. With one click, our Student Tracking allows you to track if the student has been greeted, is in transit, or has been delivered to their homestay.</span></li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">Live Tracking – <span style="font-weight: normal;">WAe offers a “live” website that allows you, your agents, host families, and the students’ parents real time information. With one click, our Student Tracking allows you to track if the student has been greeted, is in transit, or has made it to their homestay.</span></li>
 
-                                        <li style="margin-bottom: 15px; font-weight: bold;">24 Hour Access – <span style="font-weight: normal;"> Students have 24 hour “live” access to our company and are given our “Upon Your Arrival” letter that advises them of our “live” emergency number, tells them exactly where to meet us (map included), has pictures of our uniformed staff, and folded is a sign that they can hold as they arrive that allows us to immediately identify them.</span></li>
+                                        <li style="margin-bottom: 15px; font-weight: bold;">24 Hour Access – <span style="font-weight: normal;"> Students have 24 hour “live” access to our company and are given our “Upon Your Arrival” letter that advises them of our emergency number, tells them exactly where to meet us (map included), has pictures of our uniformed staff, and folded is a sign that they can hold as they arrive that allows us to immediately identify them.</span></li>
                                     </ul>                            
                                 </div>
                             </div>

@@ -53,19 +53,19 @@
                     <div class="s-category-wrap">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6">
-                                <a href="#" class="s-single-cat mb-30">
+                                <a class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-air-freight"></i>
+                                        <i class="flaticon-fast-delivery"></i>
                                     </div>
                                     <div class="s-cat-content">
-                                        <h5>Airport<br>Pickup</h5>
+                                        <h5>Airport<br>Pick-up</h5>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <a href="#" class="s-single-cat mb-30">
+                                <a class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-air-freight"></i>
+                                        <i class="flaticon-around-the-world"></i>
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>International<br>Transfers</h5>
@@ -73,9 +73,9 @@
                                 </a>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <a href="#" class="s-single-cat mb-30">
+                                <a class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-air-freight"></i>
+                                        <i class="flaticon-delivery-2"></i> 
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>24/7<br>Support</h5>
@@ -83,9 +83,9 @@
                                 </a>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <a href="#" class="s-single-cat mb-30">
+                                <a class="s-single-cat mb-30">
                                     <div class="s-cat-icon">
-                                        <i class="flaticon-air-freight"></i>
+                                        <i class="flaticon-location"></i> 
                                     </div>
                                     <div class="s-cat-content">
                                         <h5>Hostel<br>Drop-off</h5>
@@ -106,12 +106,7 @@
                             <div class="s-section-title text-center mb-60">
                                 <h2>Making Travelling Easier For International
                                     Students</h2>
-                                <p>Language Limousine staff are at the airport
-                                    every day. Finding a student at the airport
-                                    can be a very difficult task.We have come to
-                                    know the airport and our experience enables
-                                    us to locate students much easier than
-                                    anyone else.</p>
+                                <p>Locating someone in a large airport can be difficult. Our staff are knowledgeable and experienced with the facility. Let us guide you on your adventure.</p>
                             </div>
                         </div>
                     </div>
@@ -120,43 +115,30 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-services mb-30">
                                     <div class="services-thumb">
-                                        <a href="#"><img
-                                                src="img/images/Airport Pickup for Students.jpg"
-                                                alt="img"></a>
+                                        <a><img src="img/images/Airport Pickup for Students.jpg" alt="Airport Pickup"></a>
                                     </div>
                                     <div class="services-content">
                                         <div class="services-icon">
-                                            <i
-                                                class="flaticon-shipping-and-delivery"></i>
+                                            <i class="flaticon-shipping-and-delivery"></i>
                                         </div>
-                                        <h3><a href="#">Airport Pickup for
-                                                Students</a></h3>
-                                        <span>Seamless Arrival Experience<br>Student
-                                            Transportation Service</span>
-                                        <p>Enjoy a stress-free start to your
-                                            student journey with our airport
-                                            pickup service designed for both
-                                            domestic and international students,
-                                            ensuring you reach your destination
-                                            smoothly.</p>
+                                        <h3><a>Airport Transportation</a></h3>
+                                        <span>Seamless Arrival Experience</span>
+                                        <p>Enjoy a stress-free journey with our service, ensuring you reach your destination smoothly.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-services mb-30">
                                     <div class="services-thumb">
-                                        <a href="#"><img
-                                                src="img/images/Hostel & Campus Transfers.avif"
-                                                alt="img"></a>
+                                        <a><img src="img/images/Hostel & Campus Transfers.avif" alt="Hostel Transfers"></a>
                                     </div>
                                     <div class="services-content">
                                         <div class="services-icon">
                                             <i class="flaticon-shipping"></i>
                                         </div>
-                                        <h3><a href="#">Hostel & Campus
+                                        <h3><a>Hostel & Campus
                                                 Transfers</a></h3>
-                                        <span>Door-to-Door Convenience<br>Student
-                                            Transportation Service</span>
+                                        <span>Door-to-Door Convenience</span>
                                         <p>We provide safe, direct
                                             transportation from the airport to
                                             your hostel or campus, making your
@@ -168,22 +150,18 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-services mb-30">
                                     <div class="services-thumb">
-                                        <a href="#"><img
-                                                src="img/images/service.avif"
-                                                alt="img"></a>
+                                        <a><img src="img/images/service.avif" alt="Support Service"></a>
                                     </div>
                                     <div class="services-content">
                                         <div class="services-icon">
                                             <i class="flaticon-location"></i>
                                         </div>
-                                        <h3><a href="#">24/7 Support Service</a></h3>
-                                        <span>Support Anytime, Anywhere<br>Student
-                                            Transportation Service</span>
+                                        <h3><a>24/7 Support Service</a></h3>
+                                        <span>Support Anytime, Anywhere</span>
                                         <p>Our team is available around the
-                                            clock to assist students with any
+                                            clock to assist with any
                                             travel-related questions or needs,
-                                            ensuring peace of mind throughout
-                                            the journey.</p>
+                                            ensuring peace of mind.</p>
                                     </div>
                                 </div>
                             </div>
@@ -207,22 +185,12 @@
                                 <div class="s-section-title mb-30">
                                     <h2>Parents Trust Us</h2>
                                     <h6>We are the best in ensuring safe and
-                                        comfortable arrival of students
-                                        travelling internationally.</h6>
+                                        comfortable arrivals when traveling abroad.</h6>
                                 </div>
                                 <div class="int-services-content">
-                                    <p>We are parents, too. And we know the
-                                        feeling when our child travels to a new
-                                        city or country. We take care of our
+                                    <p>We are parents too. We take care of our
                                         students as if they are our own
-                                        children. First concern is the student’s
-                                        safety. Second concern is ensuring that
-                                        the student’s parents know where the
-                                        student is at all times. Third concern
-                                        is making sure that the student arrives
-                                        safely and comfortably at their
-                                        homestay.</p>
-                                    <!-- <a href="#" class="btn">comparison</a> -->
+                                        children. Safety and security are top priorities. Parents are able to utilize our student tracker while their child is with an assigned, and vetted, staff member.
                                 </div>
                             </div>
                         </div>
@@ -286,7 +254,7 @@
                                     <div
                                         class="ds-content text-center text-sm-left text-md-right">
                                         <h5>Airport Transfers</h5>
-                                        <p>Safe and timely airport pickups and
+                                        <p>Safe and timely airport pick-ups and
                                             drop-offs for all students.</p>
                                     </div>
                                 </div>
@@ -300,7 +268,7 @@
                                         class="ds-content text-center text-sm-left text-md-right">
                                         <h5>International Student Assistance</h5>
                                         <p>Personalized service to assist
-                                            international students with their
+                                            students with their
                                             travel needs.</p>
                                     </div>
                                 </div>
@@ -341,8 +309,8 @@
                                 <div
                                     class="single-delivery-services mb-70 pl-75">
                                     <div class="ds-icon">
-                                        <img src="img/icon/ds_icon05.png"
-                                            alt="icon">
+                                        <img src="img/icon/ds_icon06.png"
+                                        alt="icon">
                                     </div>
                                     <div class="ds-content">
                                         <h5>24/7 Availability</h5>
@@ -353,14 +321,14 @@
                                 <div
                                     class="single-delivery-services mb-70 pl-75">
                                     <div class="ds-icon">
-                                        <img src="img/icon/ds_icon06.png"
-                                            alt="icon">
+                                        <img src="img/icon/ds_icon05.png"
+                                        alt="icon">                                        
                                     </div>
                                     <div class="ds-content">
                                         <h5>Student Tracker</h5>
                                         <p>You can see if a student has been
                                             greeted, is in a car, or has been
-                                            delivered!</p>
+                                            delivered.</p>
                                     </div>
                                 </div>
                             </div>
@@ -382,8 +350,8 @@
                                 <div class="fact-content">
                                     <h4><span class="count">3,560</span></h4>
                                     <h6>Students Transported</h6>
-                                    <p>Express delivery is an innaiv service
-                                        effective logistics solution</p>
+                                    <!-- <p>Express delivery is an innaiv service
+                                        effective logistics solution</p> -->
                                 </div>
                             </div>
                         </div>
@@ -395,8 +363,6 @@
                                 <div class="fact-content">
                                     <h4><span class="count">195</span></h4>
                                     <h6>Countries Covered</h6>
-                                    <p>Express delivery is an innaiv service
-                                        effective logistics solution</p>
                                 </div>
                             </div>
                         </div>
@@ -408,8 +374,6 @@
                                 <div class="fact-content">
                                     <h4><span class="count">456</span> k</h4>
                                     <h6>Happy Customer</h6>
-                                    <p>Express delivery is an innaiv service
-                                        effective logistics solution</p>
                                 </div>
                             </div>
                         </div>
@@ -421,8 +385,6 @@
                                 <div class="fact-content">
                                     <h4><span class="count">99</span> Yr</h4>
                                     <h6>Year Experience</h6>
-                                    <p>Express delivery is an innaiv service
-                                        effective logistics solution</p>
                                 </div>
                             </div>
                         </div>

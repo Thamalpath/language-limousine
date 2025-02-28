@@ -54,7 +54,7 @@ if ($student) {
 <?php include 'partials/header1.php';?>
 
         <!-- header-start -->
-        <?php include 'partials/navbar1.php';?>
+        <?php include 'partials/navbar2.php';?>
         <!-- header-start-end -->
 
         <!-- main-area -->
@@ -107,7 +107,7 @@ if ($student) {
                                         <li class="<?= $statusClass['inCar'] ?>">
                                             <div class="tracking-list-icon"><i class="flaticon-fast-delivery"></i></div>
                                             <div class="tracking-list-content">
-                                                <p>Pick Up</p>
+                                                <p>Transit</p>
                                                 <?php if ($trackingInfo['inCar']) : ?>
                                                     <small><?= htmlspecialchars($trackingInfo['inCar']) ?></small>
                                                 <?php endif; ?>
