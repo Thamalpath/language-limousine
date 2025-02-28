@@ -29,9 +29,9 @@
                                         <li><a href="about-us"><i
                                                 class="fas fa-caret-right"></i>
                                             About Us</a></li>
-                                        <li><a href="services"><i
+                                        <li><a href="policies"><i
                                                 class="fas fa-caret-right"></i>
-                                            Services</a></li>
+                                            Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -100,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                         <th>City</th>
                                                         <th>School</th>
                                                         <th>Client</th>
+                                                        <th>Assigned Driver</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -124,34 +125,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_date'])) {
                                                                 
                                                                 switch($city) {
                                                                     case 'vancouver':
-                                                                        $cityColor = 'background-color: #90EE90'; // green
+                                                                        $cityColor = 'background-color: #F0E68C; color: black'; // Dull yellow
                                                                         break;
                                                                     case 'new westminster':
-                                                                        $cityColor = 'background-color: #ADD8E6'; // light blue
+                                                                        $cityColor = 'background-color: #E6E6FA; color: black'; // Light purple
                                                                         break;
                                                                     case 'burnaby':
-                                                                        $cityColor = 'background-color: #FFA500'; // orange
+                                                                        $cityColor = 'background-color: #0000FF; color: black'; // Blue
                                                                         break;
                                                                     case 'port moody':
-                                                                        $cityColor = 'background-color: #DDA0DD'; // purple
+                                                                        $cityColor = 'background-color: #FFB6C1; color: black'; // Light red
                                                                         break;
                                                                     case 'richmond':
-                                                                        $cityColor = 'background-color: #D3D3D3'; // grey
+                                                                        $cityColor = 'background-color: #FFFFFF; color: black'; // White
                                                                         break;
-                                                                        case 'surrey':
-                                                                            $cityColor = 'background-color: #FF0000'; // red
+                                                                    case 'surrey':
+                                                                        $cityColor = 'background-color: #FFFFFF; color: black'; // White
                                                                         break;
                                                                     case 'west vancouver':
-                                                                        $cityColor = 'background-color: #fa0ecc'; // grey
-                                                                    break;
+                                                                        $cityColor = 'background-color: #FFFF00; color: red'; // Bright yellow
+                                                                        break;
                                                                     case 'north vancouver':
-                                                                        $cityColor = 'background-color: #0e0efa'; // grey
-                                                                    break;
+                                                                        $cityColor = 'background-color: #FFFF00; color: black'; // Bright yellow
+                                                                        break;
+                                                                    case 'coquitlam':
+                                                                        $cityColor = 'background-color: #FFB6C1; color: #8B0000'; // Light red with dark red text
+                                                                        break;
+                                                                    case 'abbotsford':
+                                                                        $cityColor = 'background-color: #FF0000; color: black'; // Red
+                                                                        break;
+                                                                    case 'port coquitlam':
+                                                                        $cityColor = 'background-color: #FFB6C1; color: black'; // Light red
+                                                                        break;
                                                                 }
                                                                 echo "<span style='{$cityColor}; color: black;'>" . htmlspecialchars($student['City']) . "</span>";
                                                             ?></td>
                                                             <td><?php echo htmlspecialchars($student['School']); ?></td>
                                                             <td><?php echo htmlspecialchars($student['client']); ?></td>
+                                                            <td><?php echo htmlspecialchars($student['driverId']); ?></td>
                                                         </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
