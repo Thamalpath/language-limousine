@@ -13,9 +13,9 @@
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li><a href="./">Home</a></li>
-                                            <li class="active"><a href="about-us">About Us</a></li>
+                                            <li><a href="about-us">About Us</a></li>
                                             <li><a href="tracking">Tracking</a></li>
-                                            <li><a href="services">Services</a></li>                                            
+                                            <li><a href="policies">Privacy Policy</a></li>                                            
                                         </ul>
                                     </nav>
                                 </div>
